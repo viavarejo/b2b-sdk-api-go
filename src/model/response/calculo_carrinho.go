@@ -4,7 +4,7 @@
 //    calculoCarrinho, err := UnmarshalCalculoCarrinho(bytes)
 //    bytes, err = calculoCarrinho.Marshal()
 
-package main
+package response
 
 import "encoding/json"
 

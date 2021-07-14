@@ -4,7 +4,7 @@
 //    criacaoPedidoReq, err := UnmarshalCriacaoPedidoReq(bytes)
 //    bytes, err = criacaoPedidoReq.Marshal()
 
-package main
+package request
 
 import "encoding/json"
 

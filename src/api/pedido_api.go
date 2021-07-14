@@ -1,7 +1,21 @@
+package api
 
+func PostCalcularCarrinho() {
+	result := Post(nil, nil, nil)
+}
 
+func GetDadosPedidoParceiro() {
 
+}
 
+func PatchPedidosCancelamentoConfirmacao() {
 
+}
 
-func PostCalcularCarrinho()
+func GetNotaFiscalPedido() {
+
+}
+
+func PostCriarPedido() {
+
+}

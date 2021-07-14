@@ -4,7 +4,7 @@
 //    pedidoParceiroDados, err := UnmarshalPedidoParceiroDados(bytes)
 //    bytes, err = pedidoParceiroDados.Marshal()
 
-package main
+package response
 
 import "encoding/json"
 

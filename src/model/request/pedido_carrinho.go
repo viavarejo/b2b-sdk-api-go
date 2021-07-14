@@ -4,7 +4,7 @@
 //    pedidoCarrinho, err := UnmarshalPedidoCarrinho(bytes)
 //    bytes, err = pedidoCarrinho.Marshal()
 
-package main
+package request
 
 import "encoding/json"
 

@@ -1,13 +1,27 @@
 package api
 
 import (
+	"encoding/json"
+	"fmt"
+	model "model/response"
 	"service"
 )
 
-func GetOpcoesParcelamento(idFormaPagamento string, idCampanha string, cnpj string, valorParcela string) string {
+func GetOpcoesParcelamento(idFormaPagamento string, idCampanha string, cnpj string, valorParcela string) model.OpcoesParcelamentoDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["idCampanha"] = idCampanha
 	queryParams["cnpj"] = cnpj
 	queryParams["valorParcelar"] = valorParcela
-	return service.Get("/formas-pagamento/"+idFormaPagamento+"/opcoes-parcelamento", queryParams)
+	bodyString := service.Get("/formas-pagamento/"+idFormaPagamento+"/opcoes-parcelamento", queryParams)
+	bodyBytes := []byte(bodyString)
+
+	// Convert response body to struct
+	var dtoStruct model.OpcoesParcelamentoDTO
+	error := json.Unmarshal(bodyBytes, &dtoStruct)
+	if error != nil {
+		panic(error)
+	}
+	fmt.Printf("\n%+v\n", dtoStruct)
+
+	return dtoStruct
 }

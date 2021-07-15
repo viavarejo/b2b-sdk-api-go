@@ -1,29 +1,47 @@
 package api
 
 import (
-	"service"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	model "model/response"
+	"service"
 )
 
-func GetCampanhas(dtInicio string, dtFim string) Order {
+func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
+	//if dtFim == nil {
+	//	return model.CampanhasDTO{}, errors.New("invalid DtFim")
+	//}
 	var queryParams = make(map[string]interface{})
 	queryParams["dataInicio"] = dtInicio
 	queryParams["dataFim"] = dtFim
 
 	bodyString := service.Get("/campanhas", queryParams)
-	bodyBytes := []byte (bodyString)
+	bodyBytes := []byte(bodyString)
 
-	// Convert response body to Order struct
-	var orderStruct Order
-	json.Unmarshal(bodyBytes, &orderStruct)
-	fmt.Printf("\n%+v\n", orderStruct)
+	// Convert response body to struct
+	var dtoStruct model.CampanhasDTO
+	error := json.Unmarshal(bodyBytes, &dtoStruct)
+	if error != nil {
+		panic(error)
+	}
+	fmt.Printf("\n%+v\n", dtoStruct)
 
-	return orderStruct
+	return dtoStruct
 }
 
-func GetFormasPagamento(idCampanha string, cnpj string) string {
+func GetFormasPagamento(idCampanha string, cnpj string) model.FormasPagamentoDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["cnpj"] = cnpj
-	return service.Get("/campanhas/"+idCampanha+"/formas-pagamento/opcoes-parcelamento", queryParams)
+	bodyString := service.Get("/campanhas/"+idCampanha+"/formas-pagamento/opcoes-parcelamento", queryParams)
+	bodyBytes := []byte(bodyString)
+
+	// Convert response body to struct
+	var dtoStruct model.FormasPagamentoDTO
+	error := json.Unmarshal(bodyBytes, &dtoStruct)
+	if error != nil {
+		panic(error)
+	}
+	fmt.Printf("\n%+v\n", dtoStruct)
+
+	return dtoStruct
 }

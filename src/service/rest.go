@@ -4,14 +4,22 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 	"strings"
+
+	"github.com/joho/godotenv"
 )
 
-var basePath string = "http://api-integracao-extra.hlg-b2b.net"
-var token string = "H9xO4+R8GUy+18nUCgPOlg=="
+//var basePath string = "http://api-integracao-extra.hlg-b2b.net"
+//var token string = "H9xO4+R8GUy+18nUCgPOlg=="
 
 func doRequest(jsonData []byte, path string, method string, query map[string]interface{}) string {
+	basePath := GetVariable("HOST_BANDEIRA")
+	token := GetVariable("TOKEN_PARCEIRO")
+	//fmt.Printf("godotenv : %s = %s \n", "HOST_BANDEIRA", basePath)
+	//fmt.Printf("godotenv : %s = %s \n", "TOKEN_PARCEIRO", token)
 
 	var reqbody *bytes.Buffer = nil
 	if jsonData != nil {
@@ -24,6 +32,9 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 
 	fmt.Println("HTTP JSON POST URL:", httpurl)
 	request, error := http.NewRequest(method, httpurl, reqbody)
+	if error != nil {
+		panic(error)
+	}
 	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
 	request.Header.Set("Authorization", token)
 
@@ -60,4 +71,13 @@ func BuildHttpQuery(data map[string]interface{}) string {
 		query = append(query, fmt.Sprintf("%s=%v", k, v))
 	}
 	return strings.Join(query, "&")
+}
+
+func GetVariable(key string) string {
+	// load .env file
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Erro carregando arquivo .env")
+	}
+	return os.Getenv(key)
 }

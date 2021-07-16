@@ -27,15 +27,3 @@ type Data struct {
 	PedidoConfirmado bool `json:"pedidoConfirmado"`
 	PedidoCancelado  bool `json:"pedidoCancelado"`
 }
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
-}

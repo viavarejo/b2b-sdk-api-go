@@ -42,15 +42,3 @@ type Produto struct {
 	MensagemDeErro     string `json:"mensagemDeErro"`
 	CodigoDoErro       string `json:"codigoDoErro"`
 }
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
-}

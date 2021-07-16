@@ -9,9 +9,9 @@ import (
 func TestGetDadosProdutosSucess(t *testing.T) {
 	var dto response.ProdutoDTO = api.GetDadosProduto("15", "5880205")
 
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Data.Nome != "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades." {
 		t.Error("Test failed-2")
 	}
@@ -28,9 +28,9 @@ func TestGetDadosProdutosSucess(t *testing.T) {
 
 func TestGetListaDadosProdutosSucess(t *testing.T) {
 	var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", []string{"5880205", "5880206"})
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Data[0].Nome != "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades." {
 		t.Error("Test failed-2")
 	}
@@ -52,9 +52,9 @@ func TestGetListaDadosProdutosSucess(t *testing.T) {
 func TestGetDadosProdutoCampanhaSucess(t *testing.T) {
 	var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "5880205", "57.822.975/0001-12", "15")
 
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Data.Nome != "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades." {
 		t.Error("Test failed-2")
 	}
@@ -75,9 +75,9 @@ func TestGetDadosProdutoCampanhaSucess(t *testing.T) {
 func TestGetDadosProdutosFail(t *testing.T) {
 	var dto response.ProdutoDTO = api.GetDadosProduto("15", "595959")
 
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Error.Code != "ProdutoNaoEncontrado" {
 		t.Error("Test failed-2")
 	}
@@ -89,9 +89,9 @@ func TestGetDadosProdutosFail(t *testing.T) {
 func TestGetListaDadosProdutosFail(t *testing.T) {
 	ids := []string{"595959"}
 	var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", ids)
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Error.Message != "Nenhum SKU foi encontrado.(ErroValidacao)" {
 		t.Error("Test failed-2")
 	}
@@ -102,9 +102,9 @@ func TestGetListaDadosProdutosFail(t *testing.T) {
 
 func TestGetDadosProdutoCampanhaFail(t *testing.T) {
 	var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "595959", "2", "2")
-	if &dto.Data == nil {
+	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
-	}
+	}*/
 	if dto.Error.Message != "A campanha não pertence ao cliente informado.(ErroValidacao)" {
 		t.Error("Test failed-2")
 	}

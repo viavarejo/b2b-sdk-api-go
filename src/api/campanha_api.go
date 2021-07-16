@@ -7,7 +7,7 @@ import (
 	"service"
 )
 
-func GetCampanhas(dtInicio string, dtFim string) model.CampanhasDTO {
+func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["dataInicio"] = dtInicio
 	queryParams["dataFim"] = dtFim

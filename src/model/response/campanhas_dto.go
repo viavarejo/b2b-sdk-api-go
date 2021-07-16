@@ -5,8 +5,8 @@ import (
 )
 
 type CampanhasDTO struct {
-	Data  Campanha `json:"data"`
-	Error Error    `json:"error"`
+	Data  *Campanha `json:"data"`
+	Error Error     `json:"error"`
 }
 
 type Campanha struct {

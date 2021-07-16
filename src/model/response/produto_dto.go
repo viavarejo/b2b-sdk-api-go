@@ -1,6 +1,6 @@
 package response
 
 type ProdutoDTO struct {
-	Data  ListaProdutos
-	Error Error
+	Data  ListaProdutos `json:"data"`
+	Error Error         `json:"error"`
 }

@@ -2,13 +2,14 @@ package test
 
 import (
 	campanhaApi "api"
+	"model/response"
 	"strings"
 	"testing"
 )
 
 func TestGetCampanhas(t *testing.T) {
 	dtFim := "2100-08-04"
-	campanhas := campanhaApi.GetCampanhas("2019-08-04", &dtFim)
+	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", &dtFim)
 	//fmt.Println("Response:")
 	//fmt.Println(campanhas)
 
@@ -20,7 +21,7 @@ func TestGetCampanhas(t *testing.T) {
 }
 
 func testGetCampanhaFail(t *testing.T) {
-	campanhas := campanhaApi.GetCampanhas("2019-08-04", nil)
+	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", nil)
 
 	if &campanhas.Data != nil  {
 		t.Error("Test failed-1")
@@ -34,7 +35,7 @@ func testGetCampanhaFail(t *testing.T) {
 }
 
 func TestGetFormasPagamentoSucess(t *testing.T) {
-	dto := campanhaApi.GetFormasPagamento("5940", "57.822.975/0001-12")
+	var dto response.CampanhasDTO = campanhaApi.GetFormasPagamento("5940", "57.822.975/0001-12")
 	if &dto.Data == nil  {
 		t.Error("Test failed-1")
 	}
@@ -47,7 +48,7 @@ func TestGetFormasPagamentoSucess(t *testing.T) {
 }
 
 func TestGetFormasPagamentoFail(t *testing.T) {
-	dto := campanhaApi.GetFormasPagamento("590", "57.822.975/0001-12")
+	var dto response.CampanhasDTO = campanhaApi.GetFormasPagamento("590", "57.822.975/0001-12")
 	if &dto.Data == nil  {
 		t.Error("Test failed-1")
 	}

@@ -2,11 +2,12 @@ package test
 
 import (
 	"api"
+	"model/response"
 	"testing"
 )
 
 func TestGetDadosProdutosSucess(t *testing.T) {
-	dto := api.GetDadosProduto("15", "5880205")
+	var dto response.ProdutoDTO = api.GetDadosProduto("15", "5880205")
 
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
@@ -26,7 +27,7 @@ func TestGetDadosProdutosSucess(t *testing.T) {
 }
 
 func TestGetListaDadosProdutosSucess(t *testing.T) {
-	dto := api.GetListaDadosProdutos("15", []string{"5880205", "5880206"})
+	var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", []string{"5880205", "5880206"})
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
 	}
@@ -49,7 +50,7 @@ func TestGetListaDadosProdutosSucess(t *testing.T) {
 }
 
 func TestGetDadosProdutoCampanhaSucess(t *testing.T) {
-	dto := api.GetDadosProdutoCampanha("5940", "5880205", "57.822.975/0001-12", "15")
+	var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "5880205", "57.822.975/0001-12", "15")
 
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
@@ -72,7 +73,7 @@ func TestGetDadosProdutoCampanhaSucess(t *testing.T) {
 }
 
 func TestGetDadosProdutosFail(t *testing.T) {
-	dto := api.GetDadosProduto("15", "595959")
+	var dto response.ProdutoDTO = api.GetDadosProduto("15", "595959")
 
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
@@ -87,7 +88,7 @@ func TestGetDadosProdutosFail(t *testing.T) {
 
 func TestGetListaDadosProdutosFail(t *testing.T) {
 	ids := []string{"595959"}
-	dto := api.GetListaDadosProdutos("15", ids)
+	var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", ids)
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
 	}
@@ -100,7 +101,7 @@ func TestGetListaDadosProdutosFail(t *testing.T) {
 }
 
 func TestGetDadosProdutoCampanhaFail(t *testing.T) {
-	dto := api.GetDadosProdutoCampanha("5940", "595959", "2", "2")
+	var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "595959", "2", "2")
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
 	}

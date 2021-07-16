@@ -7,10 +7,7 @@ import (
 	"service"
 )
 
-func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
-	//if dtFim == nil {
-	//	return model.CampanhasDTO{}, errors.New("invalid DtFim")
-	//}
+func GetCampanhas(dtInicio string, dtFim string) model.CampanhasDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["dataInicio"] = dtInicio
 	queryParams["dataFim"] = dtFim

@@ -6,7 +6,9 @@
 
 package response
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func UnmarshalCriacaoPedidoResp(data []byte) (CriacaoPedidoResp, error) {
 	var r CriacaoPedidoResp
@@ -19,24 +21,24 @@ func (r *CriacaoPedidoResp) Marshal() ([]byte, error) {
 }
 
 type CriacaoPedidoResp struct {
-	Data  Data  `json:"data"`
-	Error Error `json:"error"`
+	Data  CriacaoPedido `json:"data"`
+	Error Error         `json:"error"`
 }
 
-type Data struct {
-	ValorProduto               float64                    `json:"valorProduto"`
-	ValorTotalPedido           float64                    `json:"valorTotalPedido"`
-	CodigoPedido               int64                      `json:"codigoPedido"`
-	PedidoParceiro             int64                      `json:"pedidoParceiro"`
-	IDPedidoMktplc             string                     `json:"idPedidoMktplc"`
-	Produtos                   []Produto                  `json:"produtos"`
-	ParametrosExtras           string                     `json:"parametrosExtras"`
-	AguardandoConfirmacao      bool                       `json:"aguardandoConfirmacao"`
-	DadosEntrega               DadosEntrega               `json:"dadosEntrega"`
-	DadosPagamentoComplementar DadosPagamentoComplementar `json:"dadosPagamentoComplementar"`
+type CriacaoPedido struct {
+	ValorProduto               float64                                 `json:"valorProduto"`
+	ValorTotalPedido           float64                                 `json:"valorTotalPedido"`
+	CodigoPedido               int64                                   `json:"codigoPedido"`
+	PedidoParceiro             int64                                   `json:"pedidoParceiro"`
+	IDPedidoMktplc             string                                  `json:"idPedidoMktplc"`
+	Produtos                   []ProdutoCriacaoPedido                  `json:"produtos"`
+	ParametrosExtras           string                                  `json:"parametrosExtras"`
+	AguardandoConfirmacao      bool                                    `json:"aguardandoConfirmacao"`
+	DadosEntrega               DadosEntregaCriacaoPedido               `json:"dadosEntrega"`
+	DadosPagamentoComplementar DadosPagamentoComplementarCriacaoPedido `json:"dadosPagamentoComplementar"`
 }
 
-type DadosEntrega struct {
+type DadosEntregaCriacaoPedido struct {
 	PrevisaoDeEntrega    string  `json:"previsaoDeEntrega"`
 	ValorFrete           float64 `json:"valorFrete"`
 	IDEntregaTipo        int64   `json:"idEntregaTipo"`
@@ -44,13 +46,13 @@ type DadosEntrega struct {
 	IDUnidadeNegocio     int64   `json:"idUnidadeNegocio"`
 }
 
-type DadosPagamentoComplementar struct {
-	Pagamentos                     []Pagamento `json:"pagamentos"`
-	ValorTotalComplementar         float64     `json:"valorTotalComplementar"`
-	ValorTotalComplementarCOMJuros float64     `json:"valorTotalComplementarComJuros"`
+type DadosPagamentoComplementarCriacaoPedido struct {
+	Pagamentos                     []PagamentoCriacaoPedido `json:"pagamentos"`
+	ValorTotalComplementar         float64                  `json:"valorTotalComplementar"`
+	ValorTotalComplementarCOMJuros float64                  `json:"valorTotalComplementarComJuros"`
 }
 
-type Pagamento struct {
+type PagamentoCriacaoPedido struct {
 	CodigoDoErro       string  `json:"codigoDoErro"`
 	ValorComplementar  float64 `json:"valorComplementar"`
 	QuantidadeParcelas int64   `json:"quantidadeParcelas"`
@@ -61,22 +63,10 @@ type Pagamento struct {
 	URL                string  `json:"url"`
 }
 
-type Produto struct {
+type ProdutoCriacaoPedido struct {
 	IDLojista  int64   `json:"idLojista"`
 	Codigo     int64   `json:"codigo"`
 	Quantidade int64   `json:"quantidade"`
 	Premio     float64 `json:"premio"`
 	PrecoVenda float64 `json:"precoVenda"`
-}
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
 }

@@ -19,11 +19,11 @@ func (r *PedidoParceiroDados) Marshal() ([]byte, error) {
 }
 
 type PedidoParceiroDados struct {
-	Data  Data  `json:"data"`
-	Error Error `json:"error"`
+	Data  PedidoParceiro `json:"data"`
+	Error Error          `json:"error"`
 }
 
-type Data struct {
+type PedidoParceiro struct {
 	Pedido       Pedido       `json:"pedido"`
 	Endereco     Endereco     `json:"endereco"`
 	Destinatario Destinatario `json:"destinatario"`
@@ -140,16 +140,4 @@ type Produto struct {
 	Quantidade int64   `json:"quantidade"`
 	Premio     int64   `json:"premio"`
 	PrecoVenda float64 `json:"precoVenda"`
-}
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
 }

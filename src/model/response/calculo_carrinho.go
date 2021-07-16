@@ -1,9 +1,3 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse and unparse this JSON data, add this code to your project and do:
-//
-//    calculoCarrinho, err := UnmarshalCalculoCarrinho(bytes)
-//    bytes, err = calculoCarrinho.Marshal()
-
 package response
 
 import "encoding/json"
@@ -19,19 +13,19 @@ func (r *CalculoCarrinho) Marshal() ([]byte, error) {
 }
 
 type CalculoCarrinho struct {
-	Data  Data  `json:"data"`
-	Error Error `json:"error"`
+	Data  CalculoCarrinhoData `json:"data"`
+	Error Error               `json:"error"`
 }
 
-type Data struct {
-	ValorFrete            int64     `json:"valorFrete"`
-	ValorImpostos         int64     `json:"valorImpostos"`
-	ValorTotaldosProdutos int64     `json:"valorTotaldosProdutos"`
-	ValorTotaldoPedido    int64     `json:"valorTotaldoPedido"`
-	Produtos              []Produto `json:"produtos"`
+type CalculoCarrinhoData struct {
+	ValorFrete            int64                    `json:"valorFrete"`
+	ValorImpostos         int64                    `json:"valorImpostos"`
+	ValorTotaldosProdutos int64                    `json:"valorTotaldosProdutos"`
+	ValorTotaldoPedido    int64                    `json:"valorTotaldoPedido"`
+	Produtos              []ProdutoCalculoCarrinho `json:"produtos"`
 }
 
-type Produto struct {
+type ProdutoCalculoCarrinho struct {
 	IDSku              int64  `json:"idSku"`
 	PrevisaoEntrega    string `json:"previsaoEntrega"`
 	ValorUnitario      int64  `json:"valorUnitario"`
@@ -41,16 +35,4 @@ type Produto struct {
 	Erro               bool   `json:"erro"`
 	MensagemDeErro     string `json:"mensagemDeErro"`
 	CodigoDoErro       string `json:"codigoDoErro"`
-}
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
 }

@@ -19,23 +19,11 @@ func (r *ConfirmacaoResp) Marshal() ([]byte, error) {
 }
 
 type ConfirmacaoResp struct {
-	Data  Data  `json:"data"`
-	Error Error `json:"error"`
+	Data  Confirmacao `json:"data"`
+	Error Error       `json:"error"`
 }
 
-type Data struct {
+type Confirmacao struct {
 	PedidoConfirmado bool `json:"pedidoConfirmado"`
 	PedidoCancelado  bool `json:"pedidoCancelado"`
-}
-
-type Error struct {
-	Code    string  `json:"code"`
-	Message string  `json:"message"`
-	Fields  []Field `json:"fields"`
-}
-
-type Field struct {
-	Field   string `json:"field"`
-	Value   string `json:"value"`
-	Message string `json:"message"`
 }

@@ -1,9 +1,3 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse and unparse this JSON data, add this code to your project and do:
-//
-//    pedidoCarrinho, err := UnmarshalPedidoCarrinho(bytes)
-//    bytes, err = pedidoCarrinho.Marshal()
-
 package request
 
 import "encoding/json"
@@ -19,16 +13,16 @@ func (r *PedidoCarrinho) Marshal() ([]byte, error) {
 }
 
 type PedidoCarrinho struct {
-	IDCampanha           int64     `json:"idCampanha"`
-	Cnpj                 string    `json:"cnpj"`
-	Cep                  string    `json:"cep"`
-	IDEntregaTipo        int64     `json:"idEntregaTipo"`
-	IDEnderecoLojaFisica int64     `json:"idEnderecoLojaFisica"`
-	IDUnidadeNegocio     int64     `json:"idUnidadeNegocio"`
-	Produtos             []Produto `json:"produtos"`
+	IDCampanha           int64                   `json:"idCampanha"`
+	Cnpj                 string                  `json:"cnpj"`
+	Cep                  string                  `json:"cep"`
+	IDEntregaTipo        int64                   `json:"idEntregaTipo"`
+	IDEnderecoLojaFisica int64                   `json:"idEnderecoLojaFisica"`
+	IDUnidadeNegocio     int64                   `json:"idUnidadeNegocio"`
+	Produtos             []ProdutoPedidoCarrinho `json:"produtos"`
 }
 
-type Produto struct {
+type ProdutoPedidoCarrinho struct {
 	Codigo     int64 `json:"codigo"`
 	Quantidade int64 `json:"quantidade"`
 	IDLojista  int64 `json:"idLojista"`

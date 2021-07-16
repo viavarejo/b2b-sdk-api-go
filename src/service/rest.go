@@ -61,8 +61,8 @@ func Get(path string, query map[string]interface{}) string {
 	return doRequest(nil, path, "GET", query)
 }
 
-func Patch(path string, query map[string]interface{}) string {
-	return doRequest(nil, path, "PATCH", query)
+func Patch(path string, jsonData []byte) string {
+	return doRequest(nil, path, "PATCH", nil)
 }
 
 func BuildHttpQuery(data map[string]interface{}) string {

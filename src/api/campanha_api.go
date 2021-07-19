@@ -10,7 +10,7 @@ import (
 func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["dataInicio"] = dtInicio
-	queryParams["dataFim"] = dtFim
+	queryParams["dataFim"] = *dtFim
 
 	bodyString := service.Get("/campanhas", queryParams)
 	bodyBytes := []byte(bodyString)

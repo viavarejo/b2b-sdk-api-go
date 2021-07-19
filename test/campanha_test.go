@@ -2,14 +2,19 @@ package test
 
 import (
 	campanhaApi "api"
+	"fmt"
 	"model/response"
 	"strings"
 	"testing"
 )
 
+func main() {
+	fmt.Println("Ola")
+}
 func TestGetCampanhas(t *testing.T) {
-	var dtFim string = "2100-08-04"
-	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", &dtFim)
+	var dtFim = new(string)
+	*dtFim = "2100-08-04"
+	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", dtFim)
 
 	expected := "57.822.975/0001-12"
 	actual := campanhas
@@ -18,6 +23,7 @@ func TestGetCampanhas(t *testing.T) {
 	}
 }
 
+/*
 func testGetCampanhaFail(t *testing.T) {
 	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", (*string)(nil))
 
@@ -54,3 +60,4 @@ func TestGetFormasPagamentoFail(t *testing.T) {
 		t.Error("Test failed-2")
 	}
 }
+*/

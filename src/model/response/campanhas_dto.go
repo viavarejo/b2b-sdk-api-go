@@ -10,15 +10,15 @@ type CampanhasDTO struct {
 }
 
 type Campanha struct {
-	IdCampanha     int32          `json:"idCampanha"`
-	Nome           string         `json:"nome"`
-	DataInicio     time.Time      `json:"dataInicio"`
-	DataFim        time.Time      `json:"dataFim"`
-	IdTipoCampanha int32          `json:"idTipoCampanha"`
-	TipoCampanha   string         `json:"tipoCampanha"`
-	CnpjContrato   string         `json:"cnpjContrato"`
-	Status         bool           `json:"status"`
-	EntregaTipos   []EntregaTipos `json:"entregaTipos"`
+	IdCampanha     int32           `json:"idCampanha"`
+	Nome           string          `json:"nome"`
+	DataInicio     time.Time       `json:"dataInicio"`
+	DataFim        time.Time       `json:"dataFim"`
+	IdTipoCampanha int32           `json:"idTipoCampanha"`
+	TipoCampanha   string          `json:"tipoCampanha"`
+	CnpjContrato   string          `json:"cnpjContrato"`
+	Status         bool            `json:"status"`
+	EntregaTipos   *[]EntregaTipos `json:"entregaTipos"`
 }
 
 type EntregaTipos struct {

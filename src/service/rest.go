@@ -3,6 +3,7 @@ package service
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -18,20 +19,28 @@ import (
 func doRequest(jsonData []byte, path string, method string, query map[string]interface{}) string {
 	basePath := GetVariable("HOST_BANDEIRA")
 	token := GetVariable("TOKEN_PARCEIRO")
-	//fmt.Printf("godotenv : %s = %s \n", "HOST_BANDEIRA", basePath)
-	//fmt.Printf("godotenv : %s = %s \n", "TOKEN_PARCEIRO", token)
+	fmt.Printf("godotenv : %s = %s \n", "HOST_BANDEIRA", basePath)
+	fmt.Printf("godotenv : %s = %s \n", "TOKEN_PARCEIRO", token)
 
 	var reqbody *bytes.Buffer = nil
+	var reader io.Reader = nil
 	if jsonData != nil {
 		reqbody = bytes.NewBuffer(jsonData)
+		reader = bytes.NewReader(reqbody.Bytes())
+	} else {
+		reader = bytes.NewReader(nil)
 	}
+
 	httpurl := basePath + path
 	if len(query) > 0 {
 		httpurl += "?" + BuildHttpQuery(query)
 	}
 
 	fmt.Println("HTTP JSON POST URL:", httpurl)
-	request, error := http.NewRequest(method, httpurl, reqbody)
+	fmt.Println("HTTP METHOD:", method)
+	fmt.Println("HTTP BODY:", reqbody)
+
+	request, error := http.NewRequest(method, httpurl, reader)
 	if error != nil {
 		panic(error)
 	}
@@ -75,9 +84,9 @@ func BuildHttpQuery(data map[string]interface{}) string {
 
 func GetVariable(key string) string {
 	// load .env file
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Erro carregando arquivo .env")
+		log.Fatalf("Erro carregando arquivo .env", err)
 	}
 	return os.Getenv(key)
 }

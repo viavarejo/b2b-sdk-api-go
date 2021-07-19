@@ -18,21 +18,21 @@ type CalculoCarrinho struct {
 }
 
 type CalculoCarrinhoData struct {
-	ValorFrete            int64                    `json:"valorFrete"`
-	ValorImpostos         int64                    `json:"valorImpostos"`
-	ValorTotaldosProdutos int64                    `json:"valorTotaldosProdutos"`
-	ValorTotaldoPedido    int64                    `json:"valorTotaldoPedido"`
+	ValorFrete            float64                  `json:"valorFrete"`
+	ValorImpostos         float64                  `json:"valorImpostos"`
+	ValorTotaldosProdutos float64                  `json:"valorTotaldosProdutos"`
+	ValorTotaldoPedido    float64                  `json:"valorTotaldoPedido"`
 	Produtos              []ProdutoCalculoCarrinho `json:"produtos"`
 }
 
 type ProdutoCalculoCarrinho struct {
-	IDSku              int64  `json:"idSku"`
-	PrevisaoEntrega    string `json:"previsaoEntrega"`
-	ValorUnitario      int64  `json:"valorUnitario"`
-	ValorTotal         int64  `json:"valorTotal"`
-	ValorTotalFrete    int64  `json:"valorTotalFrete"`
-	ValorTotalImpostos int64  `json:"valorTotalImpostos"`
-	Erro               bool   `json:"erro"`
-	MensagemDeErro     string `json:"mensagemDeErro"`
-	CodigoDoErro       string `json:"codigoDoErro"`
+	IDSku              int64   `json:"idSku"`
+	PrevisaoEntrega    string  `json:"previsaoEntrega"`
+	ValorUnitario      float64 `json:"valorUnitario"`
+	ValorTotal         float64 `json:"valorTotal"`
+	ValorTotalFrete    float64 `json:"valorTotalFrete"`
+	ValorTotalImpostos float64 `json:"valorTotalImpostos"`
+	Erro               bool    `json:"erro"`
+	MensagemDeErro     string  `json:"mensagemDeErro"`
+	CodigoDoErro       string  `json:"codigoDoErro"`
 }

@@ -2,15 +2,14 @@ package test
 
 import (
 	campanhaApi "api"
+	"model/response"
 	"strings"
 	"testing"
 )
 
 func TestGetCampanhas(t *testing.T) {
-	dtFim := "2100-08-04"
-	campanhas := campanhaApi.GetCampanhas("2019-08-04", &dtFim)
-	//fmt.Println("Response:")
-	//fmt.Println(campanhas)
+	var dtFim string = "2100-08-04"
+	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", &dtFim)
 
 	expected := "57.822.975/0001-12"
 	actual := campanhas
@@ -20,12 +19,12 @@ func TestGetCampanhas(t *testing.T) {
 }
 
 func testGetCampanhaFail(t *testing.T) {
-	campanhas := campanhaApi.GetCampanhas("2019-08-04", nil)
+	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", (*string)(nil))
 
-	if &campanhas.Data != nil  {
+	if campanhas.Data == nil {
 		t.Error("Test failed-1")
 	}
-	if campanhas.Error.Code != "400"  {
+	if campanhas.Error.Code != "400" {
 		t.Error("Test failed-2")
 	}
 	if campanhas.Error.Message != "Request inválido\\r\\nA dataFim é um parâmetro obrigatório." {
@@ -34,8 +33,8 @@ func testGetCampanhaFail(t *testing.T) {
 }
 
 func TestGetFormasPagamentoSucess(t *testing.T) {
-	dto := campanhaApi.GetFormasPagamento("5940", "57.822.975/0001-12")
-	if &dto.Data == nil  {
+	var dto response.FormasPagamentoDTO = campanhaApi.GetFormasPagamento("5940", "57.822.975/0001-12")
+	if len(dto.Data) == 0 {
 		t.Error("Test failed-1")
 	}
 	if dto.Data[0].IdFormaPagamento != 1 {
@@ -47,14 +46,11 @@ func TestGetFormasPagamentoSucess(t *testing.T) {
 }
 
 func TestGetFormasPagamentoFail(t *testing.T) {
-	dto := campanhaApi.GetFormasPagamento("590", "57.822.975/0001-12")
-	if &dto.Data == nil  {
+	var dto response.FormasPagamentoDTO = campanhaApi.GetFormasPagamento("590", "57.822.975/0001-12")
+	if len(dto.Data) > 0 {
 		t.Error("Test failed-1")
 	}
-	if  &dto.Error.Code != nil  {
+	if len(dto.Error.Code) > 0 {
 		t.Error("Test failed-2")
-	}
-	if &dto.Data != []response.FormasPagamento {
-		t.Error("Test failed-3")
 	}
 }

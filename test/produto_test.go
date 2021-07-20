@@ -33,19 +33,19 @@ func TestGetListaDadosProdutosSucess(t *testing.T) {
 	/*if &dto.Data == nil {
 		t.Error("Test failed-1")
 	}*/
-	if dto.Data[0].Nome != "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades." {
+	if dto.Data[0].Nome != "Bola de Natal Santini Christmas 8cm Vermelha/Dourada - 6 Unidades." {
 		t.Error("Test failed-2")
 	}
-	if dto.Data[0].Descricao != "Sua decora&amp#231&amp#227o de Natal vai ficar moderna e cheia de estilo com o Conjunto de Bolas Santini Christmas - Branco/Transparente. Elas contam com 10 cent&amp#237metros de di&amp#226metro e s&amp#227o feitas em material pl&amp#225stico resistente com detalhes em glitter branco.&ampltbr&ampgt&amp#13&amp#10Um conjunto para decorar &amp#225rvores de Natal, ambientes e outros arranjos. Com os produtos Santini Christmas sua decora&amp#231&amp#227o de Natal vai ganhar elogios dos convidados!" {
+	if dto.Data[0].Descricao != "As cores vermelha e dourada s&amp;#227;o as que mais representam o Natal e fazem parte da decora&amp;#231;&amp;#227;o deste conjunto de bolas Santini Christmas. Composto por seis pe&amp;#231;as desenvolvidas em material pl&amp;#225;stico e com acabamento em brilho para agregar ainda mais sofistica&amp;#231;&amp;#227;o ao ambiente.&amp;lt;br&amp;gt;&amp;#13;&amp;#10;Ideal para adornar arranjos, &amp;#225;rvores de Natal e at&amp;#233; mesmo para decorar ambientes maiores, como sal&amp;#245;es e escrit&amp;#243;rios." {
 		t.Error("Test failed-3")
 	}
-	if dto.Data[0].Imagem != "http://imagens.extra.com.br/Control/ArquivoExibir.aspx?IdArquivo=253172122" {
+	if dto.Data[0].Imagem != "http://imagens.extra.com.br/Control/ArquivoExibir.aspx?IdArquivo=253172225" {
 		t.Error("Test failed-4")
 	}
-	if dto.Data[0].Categoria != 2868 {
+	if dto.Data[0].Categoria != 2867 {
 		t.Error("Test failed-5")
 	}
-	if dto.Data[0].Valor != 29.9 {
+	if dto.Data[0].Valor != 22.9 {
 		t.Error("Test failed-5")
 	}
 

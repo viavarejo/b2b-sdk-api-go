@@ -13,12 +13,12 @@ func GetChave() model.ChaveDTO {
 	bodyBytes := []byte(bodyString)
 
 	// Convert response body to struct
-	var dtoStruct model.ChaveDTO
+	var dtoStruct = model.ChaveDTO{}
 	error := json.Unmarshal(bodyBytes, &dtoStruct)
 	if error != nil {
 		panic(error)
 	}
-	fmt.Printf("\n%+v\n", dtoStruct)
+	fmt.Printf("DTO ChaveDTO:\n%+v\n", dtoStruct)
 
 	return dtoStruct
 }

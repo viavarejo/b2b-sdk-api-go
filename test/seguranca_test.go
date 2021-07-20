@@ -1,10 +1,10 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/viavarejo/b2b-sdk-api-go/src/api"
-
 	model "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
@@ -15,6 +15,7 @@ func TestValidaChave(t *testing.T) {
 	if &dto.Data == nil {
 		t.Error("Test failed-1")
 	}
+	fmt.Println(dto.Data.ChavePublica)
 	if dto.Data.ChavePublica != CHAVE {
 		t.Error("Test failed-2")
 	}

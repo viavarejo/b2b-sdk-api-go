@@ -1,16 +1,14 @@
 package response
 
-import "time"
-
 type ChaveDTO struct {
-	Data  Chave `json:"chave"`
+	Data  Chave `json:"data"`
 	Error Error `json:"error"`
 }
 
 type Chave struct {
-	ChavePublica    string    `json:"chavePublica"`
-	DataCadastro    time.Time `json:"dataCadastro"`
-	DataExpiracao   time.Time `json:"dataExpiracao"`
-	DataAtualizacao time.Time `json:"dataAtualizacao"`
-	Ativo           bool      `json:"ativo"`
+	ChavePublica    string     `json:"chavePublica"`
+	DataCadastro    CustomTime `json:"dataCadastro"`
+	DataExpiracao   CustomTime `json:"dataExpiracao"`
+	DataAtualizacao CustomTime `json:"dataAtualizacao"`
+	Ativo           bool       `json:"ativo"`
 }

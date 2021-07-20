@@ -8,10 +8,10 @@ import (
 	"github.com/viavarejo/b2b-sdk-api-go/src/service"
 )
 
-func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
+func GetCampanhas(dtInicio string, dtFim string) model.CampanhasDTO {
 	var queryParams = make(map[string]interface{})
 	queryParams["dataInicio"] = dtInicio
-	queryParams["dataFim"] = *dtFim
+	queryParams["dataFim"] = dtFim
 
 	bodyString := service.Get("/campanhas", queryParams)
 	bodyBytes := []byte(bodyString)
@@ -22,7 +22,7 @@ func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
 	if error != nil {
 		panic(error)
 	}
-	fmt.Printf("\n%+v\n", dtoStruct)
+	//fmt.Printf("\n%+v\n", dtoStruct)
 
 	return dtoStruct
 }

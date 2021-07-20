@@ -19,8 +19,8 @@ import (
 func doRequest(jsonData []byte, path string, method string, query map[string]interface{}) string {
 	basePath := GetVariable("HOST_BANDEIRA")
 	token := GetVariable("TOKEN_PARCEIRO")
-	fmt.Printf("godotenv : %s = %s \n", "HOST_BANDEIRA", basePath)
-	fmt.Printf("godotenv : %s = %s \n", "TOKEN_PARCEIRO", token)
+	//fmt.Printf("godotenv : %s = %s \n", "HOST_BANDEIRA", basePath)
+	//fmt.Printf("godotenv : %s = %s \n", "TOKEN_PARCEIRO", token)
 
 	var reqbody *bytes.Buffer = nil
 	var reader io.Reader = nil
@@ -37,8 +37,8 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 	}
 
 	fmt.Println("HTTP JSON POST URL:", httpurl)
-	fmt.Println("HTTP METHOD:", method)
-	fmt.Println("HTTP BODY:", reqbody)
+	//fmt.Println("HTTP METHOD:", method)
+	//fmt.Println("HTTP BODY:", reqbody)
 
 	request, error := http.NewRequest(method, httpurl, reader)
 	if error != nil {
@@ -55,9 +55,9 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 	defer response.Body.Close()
 
 	fmt.Println("response Status:", response.Status)
-	fmt.Println("response Headers:", response.Header)
+	//fmt.Println("response Headers:", response.Header)
 	body, _ := ioutil.ReadAll(response.Body)
-	fmt.Println("response Body:", string(body))
+	//fmt.Println("response Body:", string(body))
 
 	return string(body)
 }

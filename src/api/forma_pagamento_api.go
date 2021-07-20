@@ -3,8 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	model "model/response"
-	"service"
+
+	model "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
+	"github.com/viavarejo/b2b-sdk-api-go/src/service"
 )
 
 func GetOpcoesParcelamento(idFormaPagamento string, idCampanha string, cnpj string, valorParcela string) model.OpcoesParcelamentoDTO {

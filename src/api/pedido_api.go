@@ -1,9 +1,9 @@
 package api
 
 import (
-	req "model/request"
-	resp "model/response"
-	"service"
+	req "github.com/viavarejo/b2b-sdk-api-go/src/model/request"
+	resp "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
+	"github.com/viavarejo/b2b-sdk-api-go/src/service"
 )
 
 func PostCalcularCarrinho(pedido req.PedidoCarrinho) resp.CalculoCarrinho {

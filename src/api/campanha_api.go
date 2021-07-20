@@ -3,8 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	model "model/response"
-	"service"
+
+	model "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
+	"github.com/viavarejo/b2b-sdk-api-go/src/service"
 )
 
 func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {

@@ -1,11 +1,13 @@
 package test
 
 import (
-	campanhaApi "api"
 	"fmt"
-	"model/response"
 	"strings"
 	"testing"
+
+	campanhaApi "github.com/viavarejo/b2b-sdk-api-go/api"
+
+	"github.com/viavarejo/b2b-sdk-api-go/model/response"
 )
 
 func main() {

@@ -1,10 +1,10 @@
 package test
 
 import (
-	"api"
+	"github.com/viavarejo/b2b-sdk-api-go/src/api"
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/request"
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 	"math/rand"
-	"model/request"
-	"model/response"
 	"strconv"
 	"testing"
 )

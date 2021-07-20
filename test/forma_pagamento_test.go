@@ -1,9 +1,10 @@
 package test
 
 import (
-	"api"
-	"model/response"
 	"testing"
+
+	"github.com/viavarejo/b2b-sdk-api-go/api"
+	"github.com/viavarejo/b2b-sdk-api-go/model/response"
 )
 
 func TestGetOpcoesParcelamentoSucess(t *testing.T) {

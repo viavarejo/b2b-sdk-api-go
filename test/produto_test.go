@@ -1,9 +1,11 @@
 package test
 
 import (
-	"api"
-	"model/response"
 	"testing"
+
+	"github.com/viavarejo/b2b-sdk-api-go/src/api"
+
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
 func TestGetDadosProdutosSucess(t *testing.T) {

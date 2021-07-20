@@ -1,19 +1,15 @@
 package response
 
-import (
-	"time"
-)
-
 type CampanhasDTO struct {
-	Data  *Campanha `json:"data"`
-	Error Error     `json:"error"`
+	Data  []Campanha `json:"data"`
+	Error Error      `json:"error"`
 }
 
 type Campanha struct {
 	IdCampanha     int32           `json:"idCampanha"`
 	Nome           string          `json:"nome"`
-	DataInicio     time.Time       `json:"dataInicio"`
-	DataFim        time.Time       `json:"dataFim"`
+	DataInicio     CustomTime      `json:"dataInicio"`
+	DataFim        CustomTime      `json:"dataFim"`
 	IdTipoCampanha int32           `json:"idTipoCampanha"`
 	TipoCampanha   string          `json:"tipoCampanha"`
 	CnpjContrato   string          `json:"cnpjContrato"`

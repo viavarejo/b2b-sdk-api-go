@@ -1,8 +1,8 @@
 package test
 
 import (
-	"fmt"
-	"strings"
+	"api"
+	"model/response"
 	"testing"
 
 	campanhaApi "github.com/viavarejo/b2b-sdk-api-go/src/api"
@@ -10,24 +10,24 @@ import (
 	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
-func main() {
-	fmt.Println("Ola")
-}
+/*
 func TestGetCampanhas(t *testing.T) {
 	var dtFim = new(string)
 	*dtFim = "2100-08-04"
-	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", dtFim)
+	var campanhas response.CampanhasDTO = api.GetCampanhas("2019-08-04", dtFim)
 
 	expected := "57.822.975/0001-12"
-	actual := campanhas
-	if strings.Contains(actual.Data.CnpjContrato, expected) {
-		t.Errorf("Test failed, Deveria retornar a campanha - esperado: '%s, retornou:  '%s", expected, actual.Data.CnpjContrato)
+
+	if campanhas.Data[0].CnpjContrato != expected {
+		t.Errorf("Test failed, Deveria retornar a campanha - esperado: %s, retornou: %s", expected, campanhas.Data[0].CnpjContrato)
 	}
 }
+*/
 
-/*
 func testGetCampanhaFail(t *testing.T) {
-	var campanhas response.CampanhasDTO = campanhaApi.GetCampanhas("2019-08-04", (*string)(nil))
+	var dtFim = new(string)
+	*dtFim = "2100-08-04"
+	var campanhas response.CampanhasDTO = api.GetCampanhas("2019-08-04", *"2100-08-04") //(*string)(nil))
 
 	if campanhas.Data == nil {
 		t.Error("Test failed-1")
@@ -40,8 +40,9 @@ func testGetCampanhaFail(t *testing.T) {
 	}
 }
 
+/*
 func TestGetFormasPagamentoSucess(t *testing.T) {
-	var dto response.FormasPagamentoDTO = campanhaApi.GetFormasPagamento("5940", "57.822.975/0001-12")
+	var dto response.FormasPagamentoDTO = api.GetFormasPagamento("5940", "57.822.975/0001-12")
 	if len(dto.Data) == 0 {
 		t.Error("Test failed-1")
 	}
@@ -53,8 +54,9 @@ func TestGetFormasPagamentoSucess(t *testing.T) {
 	}
 }
 
+
 func TestGetFormasPagamentoFail(t *testing.T) {
-	var dto response.FormasPagamentoDTO = campanhaApi.GetFormasPagamento("590", "57.822.975/0001-12")
+	var dto response.FormasPagamentoDTO = api.GetFormasPagamento("590", "57.822.975/0001-12")
 	if len(dto.Data) > 0 {
 		t.Error("Test failed-1")
 	}
@@ -62,4 +64,5 @@ func TestGetFormasPagamentoFail(t *testing.T) {
 		t.Error("Test failed-2")
 	}
 }
+
 */

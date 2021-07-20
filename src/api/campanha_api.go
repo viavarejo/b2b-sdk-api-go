@@ -17,7 +17,7 @@ func GetCampanhas(dtInicio string, dtFim *string) model.CampanhasDTO {
 	bodyBytes := []byte(bodyString)
 
 	// Convert response body to struct
-	var dtoStruct model.CampanhasDTO
+	var dtoStruct = model.CampanhasDTO{}
 	error := json.Unmarshal(bodyBytes, &dtoStruct)
 	if error != nil {
 		panic(error)

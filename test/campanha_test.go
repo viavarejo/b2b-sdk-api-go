@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	campanhaApi "github.com/viavarejo/b2b-sdk-api-go/api"
+	campanhaApi "github.com/viavarejo/b2b-sdk-api-go/src/api"
 
-	"github.com/viavarejo/b2b-sdk-api-go/model/response"
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
 func main() {

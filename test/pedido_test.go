@@ -1,12 +1,14 @@
 package test
 
 import (
-	"github.com/viavarejo/b2b-sdk-api-go/src/api"
-	"github.com/viavarejo/b2b-sdk-api-go/src/model/request"
-	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
+	"fmt"
 	"math/rand"
 	"strconv"
 	"testing"
+
+	"github.com/viavarejo/b2b-sdk-api-go/src/api"
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/request"
+	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
 type DadosPedidoHelper struct {
@@ -253,7 +255,7 @@ func TestPatchPedidosConfirmacao_6(t *testing.T) {
 	confirmacao.IDPedidoParceiro = pedidoHelper.IdPedidoParceiro
 	confirmacao.Cancelado = true
 
-	dto := api.PatchPedidosCancelamentoConfirmacao(string(pedidoComCartaoHelper.IdPedido), confirmacao)
+	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
 
 	if !dto.Data.PedidoConfirmado {
 		t.Error("Test failed-1")
@@ -263,7 +265,7 @@ func TestPatchPedidosConfirmacao_6(t *testing.T) {
 
 func TestGetDadosPedidoParceiro_7(t *testing.T) {
 
-	dto := api.GetDadosPedidoParceiro(string(pedidoHelper.IdPedido), cnpj, string(IdCampanha), string(pedidoHelper.IdPedidoParceiro), "")
+	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, fmt.Sprint(IdCampanha), fmt.Sprint(pedidoHelper.IdPedidoParceiro), "")
 
 	if !(pedidoHelper.IdPedido == dto.Data.Pedido.CodigoPedido) {
 		t.Error("Test failed-1")
@@ -279,7 +281,7 @@ func TestGetNotaFiscalPedidoPdf_8(t *testing.T) {
 }
 
 func TestGetDadosPedidoParceiroFail_9(t *testing.T) {
-	dto := api.GetDadosPedidoParceiro(string(pedidoHelper.IdPedido), cnpj, string(IdCampanha), string(pedidoHelper.IdPedidoParceiro), "")
+	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, fmt.Sprint(IdCampanha), fmt.Sprint(pedidoHelper.IdPedidoParceiro), "")
 
 	if !("400" == dto.Error.Code) {
 		t.Error("Test failed-1")
@@ -315,7 +317,7 @@ func TestPatchPedidosFail_11(t *testing.T) {
 func TestPatchPedidosConfirmacaoFail_12(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
-	dto := api.PatchPedidosCancelamentoConfirmacao(string(pedidoComCartaoHelper.IdPedido), confirmacao)
+	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
 
 	if !dto.Data.PedidoConfirmado {
 		t.Error("Test failed-1")

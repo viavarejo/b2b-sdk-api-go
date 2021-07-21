@@ -13,17 +13,17 @@ func (r *PedidoCarrinho) Marshal() ([]byte, error) {
 }
 
 type PedidoCarrinho struct {
-	IDCampanha           int64                   `json:"idCampanha"`
-	Cnpj                 string                  `json:"cnpj"`
-	Cep                  string                  `json:"cep"`
-	IDEntregaTipo        int64                   `json:"idEntregaTipo"`
-	IDEnderecoLojaFisica int64                   `json:"idEnderecoLojaFisica"`
-	IDUnidadeNegocio     int64                   `json:"idUnidadeNegocio"`
-	Produtos             []ProdutoPedidoCarrinho `json:"produtos"`
+	IDCampanha           int64                   `json:"idCampanha,omitempty"`
+	Cnpj                 string                  `json:"cnpj,omitempty"`
+	Cep                  string                  `json:"cep,omitempty"`
+	IDEntregaTipo        int64                   `json:"idEntregaTipo,omitempty"`
+	IDEnderecoLojaFisica int64                   `json:"idEnderecoLojaFisica,omitempty"`
+	IDUnidadeNegocio     int64                   `json:"idUnidadeNegocio,omitempty"`
+	Produtos             []ProdutoPedidoCarrinho `json:"produtos,omitempty"`
 }
 
 type ProdutoPedidoCarrinho struct {
-	Codigo     int64 `json:"codigo"`
-	Quantidade int64 `json:"quantidade"`
-	IDLojista  int64 `json:"idLojista"`
+	Codigo     int64 `json:"codigo,omitempty"`
+	Quantidade int64 `json:"quantidade,omitempty"`
+	IDLojista  int64 `json:"idLojista,omitempty"`
 }

@@ -236,6 +236,7 @@ func TestPatchPedidosCancelamento_5(t *testing.T) {
 	confirmacao.IDCampanha = IdCampanha
 	confirmacao.IDPedidoParceiro = pedidoHelper.IdPedidoParceiro
 	confirmacao.Cancelado = true
+	confirmacao.Confirmado = false
 	confirmacao.IDPedidoMktplc = "1-01"
 	confirmacao.MotivoCancelamento = "teste"
 	confirmacao.Parceiro = "BANCO INTER"
@@ -253,7 +254,7 @@ func TestPatchPedidosConfirmacao_6(t *testing.T) {
 
 	confirmacao.IDCampanha = IdCampanha
 	confirmacao.IDPedidoParceiro = pedidoHelper.IdPedidoParceiro
-	confirmacao.Cancelado = true
+	confirmacao.Confirmado = true
 
 	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
 
@@ -350,5 +351,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return int64(rand.Intn(65536))
+	return rand.Int63n(91899)
 }

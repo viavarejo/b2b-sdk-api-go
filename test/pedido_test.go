@@ -225,8 +225,8 @@ func TestPostCriarPedidoPagCartao_4(t *testing.T) {
 		t.Error("Test failed-1")
 	}
 
-	pedidoHelper.IdPedido = dto.Data.CodigoPedido
-	pedidoHelper.IdPedidoParceiro = dto.Data.PedidoParceiro
+	pedidoComCartaoHelper.IdPedido = dto.Data.CodigoPedido
+	pedidoComCartaoHelper.IdPedidoParceiro = dto.Data.PedidoParceiro
 
 }
 
@@ -253,7 +253,7 @@ func TestPatchPedidosConfirmacao_6(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
-	confirmacao.IDPedidoParceiro = pedidoHelper.IdPedidoParceiro
+	confirmacao.IDPedidoParceiro = pedidoComCartaoHelper.IdPedidoParceiro
 	confirmacao.Confirmado = true
 
 	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
@@ -351,5 +351,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return rand.Int63n(91899)
+	return rand.Int63n(979899)
 }

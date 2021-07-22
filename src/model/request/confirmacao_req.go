@@ -15,7 +15,7 @@ func (r *ConfirmacaoReq) Marshal() ([]byte, error) {
 type ConfirmacaoReq struct {
 	IDCampanha         int64  `json:"idCampanha,omitempty"`
 	IDPedidoParceiro   int64  `json:"idPedidoParceiro,omitempty"`
-	Confirmado         bool   `json:"confirmado,omitempty"`
+	Confirmado         bool   `json:"confirmado"`
 	IDPedidoMktplc     string `json:"idPedidoMktplc,omitempty"`
 	Cancelado          bool   `json:"cancelado,omitempty"`
 	MotivoCancelamento string `json:"motivoCancelamento,omitempty"`

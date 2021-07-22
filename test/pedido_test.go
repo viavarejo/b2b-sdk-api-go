@@ -282,7 +282,7 @@ func TestGetNotaFiscalPedidoPdf_8(t *testing.T) {
 }
 
 func TestGetDadosPedidoParceiroFail_9(t *testing.T) {
-	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, fmt.Sprint(IdCampanha), fmt.Sprint(pedidoHelper.IdPedidoParceiro), "")
+	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, "", "", "")
 
 	if !("400" == dto.Error.Code) {
 		t.Error("Test failed-1")
@@ -296,7 +296,7 @@ func TestPostCalcularCarrinhoParaCriacaoPedidoFail_10(t *testing.T) {
 
 	dto := api.PostCalcularCarrinho(request_dto)
 
-	if &dto != nil {
+	if !(&dto == nil) {
 		t.Error("Test failed-1")
 	}
 }
@@ -305,12 +305,10 @@ func TestPatchPedidosFail_11(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
-	confirmacao.IDPedidoParceiro = pedidoHelper.IdPedidoParceiro
-	confirmacao.Cancelado = true
 
-	dto := api.PatchPedidosCancelamentoConfirmacao("", confirmacao)
+	dto := api.PatchPedidosCancelamentoConfirmacao("123", confirmacao)
 
-	if !dto.Data.PedidoConfirmado {
+	if dto.Error.Code == "400" {
 		t.Error("Test failed-1")
 	}
 }
@@ -320,7 +318,7 @@ func TestPatchPedidosConfirmacaoFail_12(t *testing.T) {
 
 	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
 
-	if !dto.Data.PedidoConfirmado {
+	if dto.Error.Code == "400" {
 		t.Error("Test failed-1")
 	}
 
@@ -351,5 +349,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return rand.Int63n(979899)
+	return rand.Int63n(779622)
 }

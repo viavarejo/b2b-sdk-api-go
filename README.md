@@ -52,8 +52,8 @@ Na pasta [src / service] está o arquivo rest.go responsável por fazer a comuni
 A seguir, são apresentadas as 5 APIs e exemplos com as principais operações do B2B.
 
 - ## Campanha
-    Api Utilizada para operações de campanha
-    Os testes unitários estão disponiveis no arquivo test/campanha-test.go
+    Api Utilizada para operações de campanha.
+    Os testes unitários estão disponiveis no arquivo test/campanha-test.go.
     Esses testes servirão como exemplo de utilização da api.
 
     | Obtém todas as campanhas vinculadas ao parceiro: |
@@ -71,8 +71,8 @@ A seguir, são apresentadas as 5 APIs e exemplos com as principais operações d
 ***
 
 - ## Pedido
-    Api utilizada para operações de pedidos
-    Os testes unitários estão disponiveis no arquivo test/pedido-test.go
+    Api utilizada para operações de pedidos.
+    Os testes unitários estão disponiveis no arquivo test/pedido-test.go.
     Esses testes servirão como exemplo de utilização da api.
     ### observação
     As constantes do arquivo menionado acima ID_SKU_CRIACAO_PEDIDO, ID_SKU_CRIACAO_PEDIDO_COM_CARTAO, ID_CAMPANHA, ID_LOJISTA e CEP podem mudar dependendo de quando forem testar.
@@ -81,83 +81,83 @@ A seguir, são apresentadas as 5 APIs e exemplos com as principais operações d
     | Calcular carrinho: |
     | ------ | 
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_CalcularCarrinhoAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_CalcularCarrinhoAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_CalcularCarrinhoAsync |
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_CalcularCarrinhoAsync |
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_CalcularCarrinhoAsync |
 		
     | Obter os dados de pedido do parceiro: |
     | ------ | 
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterPedidoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterPedidoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterPedidoAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterPedidoAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterPedidoAsync|
 	 
     | Confirma ou cancela pedidos pendentes de confirmação: |
     | ------ | 
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ConfirmarPedidoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ConfirmarPedidoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ConfirmarPedidoAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ConfirmarPedidoAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ConfirmarPedidoAsync|
 	
     | Obter nota fiscal do pedido: |
     | ------ | 
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
 		
     | Criar pedido: |
     | ------ | 
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Pedido/Pedido_ObterNFeAsync|
 
 ***
 
 - ## Forma de Pagamento
-    Api Utilizada para operações de forma de pagamento
-    Os testes unitários estão disponiveis no arquivo test/forma-pagamento-test.go
+    Api Utilizada para operações de forma de pagamento.
+    Os testes unitários estão disponiveis no arquivo test/forma-pagamento-test.go.
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter opções de parcelamento: |
     | ------ |
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/FormaPagamento/FormaPagamento_ListarOpcoesParcelamentoAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/FormaPagamento/FormaPagamento_ListarOpcoesParcelamentoAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/FormaPagamento/FormaPagamento_ListarOpcoesParcelamentoAsync |
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/FormaPagamento/FormaPagamento_ListarOpcoesParcelamentoAsync |
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/FormaPagamento/FormaPagamento_ListarOpcoesParcelamentoAsync |
 
 ***
 
 - ## Produto
-    Api Utilizada para operações de produto
-    Os testes unitários estão disponiveis no arquivo test/produto-test.go
+    Api Utilizada para operações de produto.
+    Os testes unitários estão disponiveis no arquivo test/produto-test.go.
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter dados do produto: |
     | ------ |
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoAsync|
     
     |# Obter lista de dados dos produtos: |
     | ------ |
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ListarProdutoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ListarProdutoAsync|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ListarProdutoAsync|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ListarProdutoAsync|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ListarProdutoAsync|
 
     | Obter dados do produto por Campanha: |
     | ------ |
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoPorCampanhaAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoPorCampanhaAsync |
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoPorCampanhaAsync |
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoPorCampanhaAsync |
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Produto/Produto_ObterProdutoPorCampanhaAsync |
 
 ***
 
 - ## Seguranca
-    Api Utilizada para operações de seguranca
-    Os testes unitários estão disponiveis no arquivo test/seguranca-test.go
+    Api Utilizada para operações de seguranca.
+    Os testes unitários estão disponiveis no arquivo test/seguranca-test.go.
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter chave pública 2048 bits utilizada para criptografia dos dados do cartão: |
     | ------ |
     | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Seguranca/Seguranca_ObterChave|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Seguranca/Seguranca_ObterChave|
-    | http://api-integracao-casasbahia.hlg-b2b.net/swagger/ui/index#!/Seguranca/Seguranca_ObterChave|
+    | http://api-integracao-pontofrio.hlg-b2b.net/swagger/ui/index#!/Seguranca/Seguranca_ObterChave|
+    | http://api-integracao-extra.hlg-b2b.net/swagger/ui/index#!/Seguranca/Seguranca_ObterChave|
 
 ***
 

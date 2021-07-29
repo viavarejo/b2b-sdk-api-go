@@ -9,6 +9,7 @@ import (
 	"github.com/viavarejo/b2b-sdk-api-go/src/api"
 	"github.com/viavarejo/b2b-sdk-api-go/src/model/request"
 	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
+	"github.com/viavarejo/b2b-sdk-api-go/src/security"
 )
 
 type DadosPedidoHelper struct {
@@ -181,12 +182,14 @@ func TestPostCriarPedidoPagCartao_4(t *testing.T) {
 
 	dadosEntrega.ValorFrete = pedidoComCartaoHelper.ValorFrete
 
+	var chaveDto response.ChaveDTO = api.GetChave()
+
 	//Adicionar criptografia
-	dadosCartaoCredito.Nome = "nome"
-	dadosCartaoCredito.Numero = "nome"
-	dadosCartaoCredito.CodigoVerificador = "nome"
-	dadosCartaoCredito.ValidadeAno = "nome"
-	dadosCartaoCredito.ValidadeMes = "nome"
+	dadosCartaoCredito.Nome = security.Encrypt(chaveDto.Data.ChavePublica, "Jose da Silva")
+	dadosCartaoCredito.Numero = security.Encrypt(chaveDto.Data.ChavePublica, "5155901222280001")
+	dadosCartaoCredito.CodigoVerificador = security.Encrypt(chaveDto.Data.ChavePublica, "1234")
+	dadosCartaoCredito.ValidadeAno = security.Encrypt(chaveDto.Data.ChavePublica, "2045")
+	dadosCartaoCredito.ValidadeMes = security.Encrypt(chaveDto.Data.ChavePublica, "12")
 	dadosCartaoCredito.QuantidadeParcelas = 1
 
 	dadosCartaoCreditoValidacao.Nome = "Jose da Silva"

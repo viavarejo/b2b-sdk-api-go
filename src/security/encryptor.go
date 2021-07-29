@@ -21,13 +21,10 @@ func Encrypt(publicKeyString string, secretMessage string) string {
 	var publicKey rsa.PublicKey = BytesToPublicKey(publicKeyBytes)
 
 	encryptedMessage := PKCS1_Encrypt(secretMessage, publicKey)
-
-	fmt.Println("Cipher Text:", encryptedMessage)
 	return encryptedMessage
 }
 
 func PKCS1_Encrypt(secretMessage string, key rsa.PublicKey) string {
-	//label := []byte("OAEP Encrypted")
 	rng := rand.Reader
 	ciphertext, err := rsa.EncryptPKCS1v15(rng, &key, []byte(secretMessage))
 	CheckError(err)
@@ -53,6 +50,7 @@ func CheckError(e error) {
 }
 
 func ConvertToPem(key string) string {
+	// quebra em 64 caracteres por linha
 	var split = 64
 	var k = 1
 	var resultado string
@@ -65,6 +63,7 @@ func ConvertToPem(key string) string {
 			k++
 		}
 	}
+	// Add Header do PEM
 	resultado = "-----BEGIN CERTIFICATE-----\n" + resultado + "\n-----END CERTIFICATE-----"
 	fmt.Println(resultado)
 	return resultado

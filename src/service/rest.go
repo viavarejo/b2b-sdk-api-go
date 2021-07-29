@@ -38,7 +38,7 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 
 	fmt.Println("HTTP JSON POST URL:", httpurl)
 	//fmt.Println("HTTP METHOD:", method)
-	//fmt.Println("HTTP BODY:", reqbody)
+	fmt.Println("HTTP BODY:", reqbody)
 
 	request, error := http.NewRequest(method, httpurl, reader)
 	if error != nil {
@@ -57,9 +57,32 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 	fmt.Println("response Status:", response.Status)
 	//fmt.Println("response Headers:", response.Header)
 	body, _ := ioutil.ReadAll(response.Body)
-	//fmt.Println("response Body:", string(body))
+	fmt.Println("response Body:", string(body))
 
 	return string(body)
+}
+
+func DownloadFile(path string) ([]byte, *http.Response) {
+	basePath := GetVariable("HOST_BANDEIRA")
+	token := GetVariable("TOKEN_PARCEIRO")
+	//burl := "http://localhost:8080/pedidos/225829325/entregas/91712686/nfe/xml"
+	// Get the data
+	httpurl := basePath + path
+	req, err := http.NewRequest("GET", httpurl, bytes.NewReader(nil))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	req.Header.Set("Authorization", token)
+	client := &http.Client{}
+	resp, error := client.Do(req)
+	if error != nil {
+		panic(error)
+	}
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	return body, resp
 }
 
 func Post(jsonData []byte, path string) string {
@@ -71,7 +94,7 @@ func Get(path string, query map[string]interface{}) string {
 }
 
 func Patch(path string, jsonData []byte) string {
-	return doRequest(nil, path, "PATCH", nil)
+	return doRequest(jsonData, path, "PATCH", nil)
 }
 
 func BuildHttpQuery(data map[string]interface{}) string {

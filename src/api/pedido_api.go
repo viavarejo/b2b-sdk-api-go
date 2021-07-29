@@ -1,6 +1,11 @@
 package api
 
 import (
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+
 	req "github.com/viavarejo/b2b-sdk-api-go/src/model/request"
 	resp "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 	"github.com/viavarejo/b2b-sdk-api-go/src/service"
@@ -41,9 +46,26 @@ func PatchPedidosCancelamentoConfirmacao(idCompra string, confirmacao req.Confir
 	return dto
 }
 
-func GetNotaFiscalPedido(idCompra string, idCompraEntrega string, formato string) string {
+func GetNotaFiscalPedido(idCompra string, idCompraEntrega string, formato string) ([]byte, *http.Response) {
 	urlPath := "/pedidos/" + idCompra + "/entregas/" + idCompraEntrega + "/nfe/" + formato
-	return service.Get(urlPath, nil)
+
+	file, resp := service.DownloadFile(urlPath)
+	// Create the file
+	out, err := os.Create(idCompra + "_" + idCompraEntrega + "." + strings.ToLower(formato))
+	if err != nil {
+		panic(err)
+	}
+	defer out.Close()
+
+	// Write the body to file
+	//_, err = io.Copy(out, resp.Body)
+	wfile, err := out.Write(file)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("wrote %d bytes\n", wfile)
+
+	return file, resp
 }
 
 func PostCriarPedido(pedido req.CriacaoPedidoReq) resp.CriacaoPedidoResp {

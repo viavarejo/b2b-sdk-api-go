@@ -274,14 +274,22 @@ func TestGetDadosPedidoParceiro_7(t *testing.T) {
 }
 
 func TestGetNotaFiscalPedidoPdf_8(t *testing.T) {
-	dto := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "XML")
 
-	if &dto == nil {
+	if &resp.Body == nil {
 		t.Error("Test failed-1")
 	}
 }
 
-func TestGetDadosPedidoParceiroFail_9(t *testing.T) {
+func TestGetNotaFiscalPedidoXml_9(t *testing.T) {
+	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+
+	if &resp.Body == nil {
+		t.Error("Test failed-1")
+	}
+}
+
+func TestGetDadosPedidoParceiroFail_10(t *testing.T) {
 	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, "", "", "")
 
 	if !("400" == dto.Error.Code) {
@@ -290,7 +298,7 @@ func TestGetDadosPedidoParceiroFail_9(t *testing.T) {
 
 }
 
-func TestPostCalcularCarrinhoParaCriacaoPedidoFail_10(t *testing.T) {
+func TestPostCalcularCarrinhoParaCriacaoPedidoFail_11(t *testing.T) {
 	request_dto := request.PedidoCarrinho{}
 	request_dto.Cnpj = cnpj
 
@@ -301,7 +309,7 @@ func TestPostCalcularCarrinhoParaCriacaoPedidoFail_10(t *testing.T) {
 	}
 }
 
-func TestPatchPedidosFail_11(t *testing.T) {
+func TestPatchPedidosFail_12(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
@@ -313,7 +321,7 @@ func TestPatchPedidosFail_11(t *testing.T) {
 	}
 }
 
-func TestPatchPedidosConfirmacaoFail_12(t *testing.T) {
+func TestPatchPedidosConfirmacaoFail_13(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
@@ -324,15 +332,15 @@ func TestPatchPedidosConfirmacaoFail_12(t *testing.T) {
 
 }
 
-func TestGetNotaFiscalPedidoFail_13(t *testing.T) {
-	dto := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+func TestGetNotaFiscalPedidoFail_14(t *testing.T) {
+	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
 
-	if &dto == nil {
+	if &resp == nil {
 		t.Error("Test failed-1")
 	}
 }
 
-func TestPostCriarPedidoFail_14(t *testing.T) {
+func TestPostCriarPedidoFail_15(t *testing.T) {
 	criacao := request.CriacaoPedidoReq{}
 	dto := api.PostCriarPedido(criacao)
 	if &dto == nil {
@@ -349,5 +357,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return rand.Int63n(779622)
+	return rand.Int63n(946802)
 }

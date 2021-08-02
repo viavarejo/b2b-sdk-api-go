@@ -37,8 +37,8 @@ func BytesToPublicKey(pub []byte) rsa.PublicKey {
 	var cert *x509.Certificate
 	cert, _ = x509.ParseCertificate(block.Bytes)
 	rsaPublicKey := cert.PublicKey.(*rsa.PublicKey)
-	fmt.Println(rsaPublicKey.N)
-	fmt.Println(rsaPublicKey.E)
+	//fmt.Println(rsaPublicKey.N)
+	//fmt.Println(rsaPublicKey.E)
 	return *rsaPublicKey
 }
 
@@ -65,6 +65,6 @@ func ConvertToPem(key string) string {
 	}
 	// Add Header do PEM
 	resultado = "-----BEGIN CERTIFICATE-----\n" + resultado + "\n-----END CERTIFICATE-----"
-	fmt.Println(resultado)
+	//fmt.Println(resultado)
 	return resultado
 }

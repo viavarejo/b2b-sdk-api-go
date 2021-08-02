@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 
 	model "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 	"github.com/viavarejo/b2b-sdk-api-go/src/service"
@@ -18,7 +17,7 @@ func GetChave() model.ChaveDTO {
 	if error != nil {
 		panic(error)
 	}
-	fmt.Printf("DTO ChaveDTO:\n%+v\n", dtoStruct)
+	//fmt.Printf("DTO ChaveDTO:\n%+v\n", dtoStruct)
 
 	return dtoStruct
 }

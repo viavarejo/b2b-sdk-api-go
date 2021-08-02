@@ -27,6 +27,13 @@ type DadosCartaoHelper struct {
 	MesValidade       string
 }
 
+/**
+ * Os testes para as URI's dos Pedidos do B2B.
+ * É importante que os metodos sejam executados na ordem estabelecida, pois
+ * alguns metodos de testes possuem dependencia dos resultados dos anteriores.
+ *
+ */
+
 var idSkuCriacaoPedido int64 = 8935731
 var idSkuCriacaoPedidoComCartao int64 = 9342200
 var IdLojista int64 = 15
@@ -37,7 +44,7 @@ var cpfDestinatario string = "435.375.660-50"
 var pedidoHelper DadosPedidoHelper
 var pedidoComCartaoHelper DadosPedidoHelper
 
-func TestPostCalcularCarrinhoParaCriacaoPedido_1(t *testing.T) {
+func ATestPostCalcularCarrinhoParaCriacaoPedido(t *testing.T) {
 	produto := request.ProdutoPedidoCarrinho{}
 	produto.Codigo = idSkuCriacaoPedido
 	produto.Quantidade = 1
@@ -66,7 +73,7 @@ func TestPostCalcularCarrinhoParaCriacaoPedido_1(t *testing.T) {
 
 }
 
-func TestPostCalcularCarrinhoParaCriacaoPedidoComCartao_2(t *testing.T) {
+func BTestPostCalcularCarrinhoParaCriacaoPedidoComCartao(t *testing.T) {
 	var produto request.ProdutoPedidoCarrinho
 	produto.Codigo = idSkuCriacaoPedidoComCartao
 	produto.Quantidade = 1
@@ -94,7 +101,7 @@ func TestPostCalcularCarrinhoParaCriacaoPedidoComCartao_2(t *testing.T) {
 	pedidoComCartaoHelper = preparaPedido(dto)
 }
 
-func TestPostCriarPedido_3(t *testing.T) {
+func CTestPostCriarPedido(t *testing.T) {
 	request_dto := request.CriacaoPedidoReq{}
 	produto := request.ProdutoCriacaoPedido{}
 	enderecoEntrega := request.Endereco{}
@@ -140,6 +147,8 @@ func TestPostCriarPedido_3(t *testing.T) {
 	valorTotal := pedidoHelper.ValorFrete + pedidoHelper.precoVenda
 
 	if valorTotal != dto.Data.ValorTotalPedido {
+		fmt.Println("valorTotal: " + fmt.Sprintf("%f", valorTotal))
+		fmt.Println("dto.Data.ValorTotalPedido: " + fmt.Sprintf("%f", dto.Data.ValorTotalPedido))
 		t.Error("Test failed-1")
 	}
 
@@ -148,7 +157,7 @@ func TestPostCriarPedido_3(t *testing.T) {
 
 }
 
-func TestPostCriarPedidoPagCartao_4(t *testing.T) {
+func DTestPostCriarPedidoPagCartao(t *testing.T) {
 	request_dto := request.CriacaoPedidoReq{}
 	produto := request.ProdutoCriacaoPedido{}
 	enderecoEntrega := request.Endereco{}
@@ -233,7 +242,7 @@ func TestPostCriarPedidoPagCartao_4(t *testing.T) {
 
 }
 
-func TestPatchPedidosCancelamento_5(t *testing.T) {
+func ETest05PatchPedidosCancelamento(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
@@ -252,7 +261,7 @@ func TestPatchPedidosCancelamento_5(t *testing.T) {
 
 }
 
-func TestPatchPedidosConfirmacao_6(t *testing.T) {
+func FTest06PatchPedidosConfirmacao(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
@@ -267,7 +276,7 @@ func TestPatchPedidosConfirmacao_6(t *testing.T) {
 
 }
 
-func TestGetDadosPedidoParceiro_7(t *testing.T) {
+func GTestGetDadosPedidoParceiro(t *testing.T) {
 
 	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, fmt.Sprint(IdCampanha), fmt.Sprint(pedidoHelper.IdPedidoParceiro), "")
 
@@ -276,7 +285,7 @@ func TestGetDadosPedidoParceiro_7(t *testing.T) {
 	}
 }
 
-func TestGetNotaFiscalPedidoPdf_8(t *testing.T) {
+func FTestGetNotaFiscalPedidoPdf(t *testing.T) {
 	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "XML")
 
 	if &resp.Body == nil {
@@ -284,7 +293,7 @@ func TestGetNotaFiscalPedidoPdf_8(t *testing.T) {
 	}
 }
 
-func TestGetNotaFiscalPedidoXml_9(t *testing.T) {
+func GTestGetNotaFiscalPedidoXml(t *testing.T) {
 	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
 
 	if &resp.Body == nil {
@@ -292,7 +301,7 @@ func TestGetNotaFiscalPedidoXml_9(t *testing.T) {
 	}
 }
 
-func TestGetDadosPedidoParceiroFail_10(t *testing.T) {
+func HTestGetDadosPedidoParceiroFail(t *testing.T) {
 	dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, "", "", "")
 
 	if !("400" == dto.Error.Code) {
@@ -301,7 +310,7 @@ func TestGetDadosPedidoParceiroFail_10(t *testing.T) {
 
 }
 
-func TestPostCalcularCarrinhoParaCriacaoPedidoFail_11(t *testing.T) {
+func ITestPostCalcularCarrinhoParaCriacaoPedidoFail(t *testing.T) {
 	request_dto := request.PedidoCarrinho{}
 	request_dto.Cnpj = cnpj
 
@@ -312,7 +321,7 @@ func TestPostCalcularCarrinhoParaCriacaoPedidoFail_11(t *testing.T) {
 	}
 }
 
-func TestPatchPedidosFail_12(t *testing.T) {
+func JTestPatchPedidosFail(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	confirmacao.IDCampanha = IdCampanha
@@ -324,7 +333,7 @@ func TestPatchPedidosFail_12(t *testing.T) {
 	}
 }
 
-func TestPatchPedidosConfirmacaoFail_13(t *testing.T) {
+func KTestPatchPedidosConfirmacaoFail(t *testing.T) {
 	confirmacao := request.ConfirmacaoReq{}
 
 	dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
@@ -335,7 +344,7 @@ func TestPatchPedidosConfirmacaoFail_13(t *testing.T) {
 
 }
 
-func TestGetNotaFiscalPedidoFail_14(t *testing.T) {
+func LTestGetNotaFiscalPedidoFail(t *testing.T) {
 	_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
 
 	if &resp == nil {
@@ -343,7 +352,7 @@ func TestGetNotaFiscalPedidoFail_14(t *testing.T) {
 	}
 }
 
-func TestPostCriarPedidoFail_15(t *testing.T) {
+func MTestPostCriarPedidoFail(t *testing.T) {
 	criacao := request.CriacaoPedidoReq{}
 	dto := api.PostCriarPedido(criacao)
 	if &dto == nil {

@@ -18,6 +18,7 @@ _cgo_*
 _obj
 _test
 _testmain.go
+.idea/
 
 /VERSION.cache
 /bin/
@@ -45,6 +46,8 @@ _testmain.go
 /test/pass.out
 /test/run.out
 /test/times.out
+/test/*.xml
+/test/*.pdf
 
 # This file includes artifacts of Go build that should not be checked in.
 # For files created by specific development environment (e.g. editor),

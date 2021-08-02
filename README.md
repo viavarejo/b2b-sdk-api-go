@@ -174,10 +174,10 @@ Na pasta [tests] contem os arquivos:
 * encrypto_test.go (arquivo adicional)
 
 * Para fazer teste de arquivo individual:
->`go test test/campanha_test.go`
+>`go test test/forma_pagamento_test.go -v`
 
 ![Screenshot](tela-testes.png)
 
 * Teste geral:
->`go test ./test`
+>`go test ./test -v`
 

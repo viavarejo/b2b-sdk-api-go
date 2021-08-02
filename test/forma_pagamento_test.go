@@ -7,21 +7,26 @@ import (
 	"github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 )
 
-func TestGetOpcoesParcelamentoSucess(t *testing.T) {
-	const VALOR_PARCELA_EXPECTED = 1000.0
-	var dto response.OpcoesParcelamentoDTO = api.GetOpcoesParcelamento("1", "5940", "57.822.975/0001-12", "1000")
-	if len(dto.Data) == 0 {
-		t.Error("Test failed-1")
-	}
-	if dto.Data[0].ValorParcela != VALOR_PARCELA_EXPECTED {
-		t.Error("Test failed-2")
-	}
-}
+func TestFormaPagamento(t *testing.T) {
+	t.Run("Deveria retornar as Opcoes de Parcelamento",
+		func(t *testing.T) {
+			const VALOR_PARCELA_EXPECTED = 1000.0
+			var dto response.OpcoesParcelamentoDTO = api.GetOpcoesParcelamento("1", "5940", "57.822.975/0001-12", "1000")
+			if len(dto.Data) == 0 {
+				t.Error("Test failed-1")
+				t.Fail()
+			}
+			if dto.Data[0].ValorParcela != VALOR_PARCELA_EXPECTED {
+				t.Error("Test failed-2")
+				t.Fail()
+			}
+		})
 
-//ERRO FORA DO PADRÃO(objeto vem todo vazio)
-func TestGetOpcoesParcelamentoFail(t *testing.T) {
-	var dto response.OpcoesParcelamentoDTO = api.GetOpcoesParcelamento("8", "5940", "57.822.975/0001-12", "1000")
-	if len(dto.Data) > 0 {
-		t.Error("Test failed-1")
-	}
+	t.Run("Deveria falhar o retorno das Opcoes de Parcelamento",
+		func(t *testing.T) {
+			var dto response.OpcoesParcelamentoDTO = api.GetOpcoesParcelamento("8", "5940", "57.822.975/0001-12", "1000")
+			if len(dto.Data) > 0 {
+				t.Error("Test failed-1")
+			}
+		})
 }

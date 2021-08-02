@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 
 	model "github.com/viavarejo/b2b-sdk-api-go/src/model/response"
 	"github.com/viavarejo/b2b-sdk-api-go/src/service"
@@ -22,7 +21,7 @@ func GetOpcoesParcelamento(idFormaPagamento string, idCampanha string, cnpj stri
 	if error != nil {
 		panic(error)
 	}
-	fmt.Printf("\n%+v\n", dtoStruct)
+	//fmt.Printf("\n%+v\n", dtoStruct)
 
 	return dtoStruct
 }

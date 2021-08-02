@@ -65,7 +65,6 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 func DownloadFile(path string) ([]byte, *http.Response) {
 	basePath := GetVariable("HOST_BANDEIRA")
 	token := GetVariable("TOKEN_PARCEIRO")
-	//burl := "http://localhost:8080/pedidos/225829325/entregas/91712686/nfe/xml"
 	// Get the data
 	httpurl := basePath + path
 	req, err := http.NewRequest("GET", httpurl, bytes.NewReader(nil))

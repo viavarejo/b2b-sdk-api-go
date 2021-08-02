@@ -50,21 +50,22 @@ func GetNotaFiscalPedido(idCompra string, idCompraEntrega string, formato string
 	urlPath := "/pedidos/" + idCompra + "/entregas/" + idCompraEntrega + "/nfe/" + formato
 
 	file, resp := service.DownloadFile(urlPath)
-	// Create the file
-	out, err := os.Create(idCompra + "_" + idCompraEntrega + "." + strings.ToLower(formato))
-	if err != nil {
-		panic(err)
-	}
-	defer out.Close()
 
-	// Write the body to file
-	//_, err = io.Copy(out, resp.Body)
-	wfile, err := out.Write(file)
-	if err != nil {
-		panic(err)
+	if resp.StatusCode == 200 {
+		// Create the file
+		out, err := os.Create(idCompra + "_" + idCompraEntrega + "." + strings.ToLower(formato))
+		if err != nil {
+			panic(err)
+		}
+		defer out.Close()
+		// Write the body to file
+		//_, err = io.Copy(out, resp.Body)
+		wfile, err := out.Write(file)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("wrote %d bytes\n", wfile)
 	}
-	fmt.Printf("wrote %d bytes\n", wfile)
-
 	return file, resp
 }
 

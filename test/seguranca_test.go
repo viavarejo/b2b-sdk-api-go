@@ -1,6 +1,8 @@
 package test
 
 import (
+	"encoding/json"
+	"fmt"
 	"testing"
 
 	"github.com/viavarejo/b2b-sdk-api-go/src/api"
@@ -13,10 +15,16 @@ func TestModuloSeguranca(t *testing.T) {
 	t.Run("Deveria retornar a chave publica",
 		func(t *testing.T) {
 			var dto model.ChaveDTO = api.GetChave()
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			if &dto.Data == nil {
 				t.Error("Test failed-1")
 			}
-			//fmt.Println(dto.Data.ChavePublica)
+
 			if dto.Data.ChavePublica != CHAVE {
 				t.Error("Test failed - esperado: " + CHAVE + " recebido: " + dto.Data.ChavePublica)
 			}

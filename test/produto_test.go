@@ -1,6 +1,8 @@
 package test
 
 import (
+	"encoding/json"
+	"fmt"
 	"testing"
 
 	"github.com/viavarejo/b2b-sdk-api-go/src/api"
@@ -12,6 +14,11 @@ func TestProdutos(t *testing.T) {
 	t.Run("Deveria retornar os Produtos",
 		func(t *testing.T) {
 			var dto response.ProdutoDTO = api.GetDadosProduto("15", "5880205")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
 
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
@@ -33,6 +40,12 @@ func TestProdutos(t *testing.T) {
 	t.Run("Deveria retornar uma lista de dados dos Produtos",
 		func(t *testing.T) {
 			var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", []string{"5880205", "5880206"})
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
 			}*/
@@ -57,6 +70,11 @@ func TestProdutos(t *testing.T) {
 	t.Run("Deveria retornar os dados do Produto da Campanha",
 		func(t *testing.T) {
 			var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "5880205", "57.822.975/0001-12", "15")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
 
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
@@ -80,6 +98,11 @@ func TestProdutos(t *testing.T) {
 	t.Run("Falhar ao buscar dados do Produto",
 		func(t *testing.T) {
 			var dto response.ProdutoDTO = api.GetDadosProduto("15", "595959")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
 
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
@@ -96,6 +119,12 @@ func TestProdutos(t *testing.T) {
 		func(t *testing.T) {
 			ids := []string{"595959"}
 			var dto response.ProdutosDTO = api.GetListaDadosProdutos("15", ids)
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
 			}*/
@@ -110,6 +139,12 @@ func TestProdutos(t *testing.T) {
 	t.Run("Falhar ao buscar dados do Produto da Campanha",
 		func(t *testing.T) {
 			var dto response.ProdutoDTO = api.GetDadosProdutoCampanha("5940", "595959", "2", "2")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			/*if &dto.Data == nil {
 				t.Error("Test failed-1")
 			}*/

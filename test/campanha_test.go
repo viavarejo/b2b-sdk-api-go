@@ -1,6 +1,8 @@
 package test
 
 import (
+	"encoding/json"
+	"fmt"
 	"testing"
 
 	"github.com/viavarejo/b2b-sdk-api-go/src/api"
@@ -11,6 +13,11 @@ func TestCampanhas(t *testing.T) {
 	t.Run("Deveria retornar as Campanhas",
 		func(t *testing.T) {
 			var campanhas response.CampanhasDTO = api.GetCampanhas("2019-08-04", "2100-08-04")
+			b, err := json.MarshalIndent(campanhas, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
 
 			expected := "57.822.975/0001-12"
 
@@ -22,6 +29,11 @@ func TestCampanhas(t *testing.T) {
 	t.Run("Falha ao retornar as Campanhas",
 		func(t *testing.T) {
 			var campanhas response.CampanhasDTO = api.GetCampanhas("2019-08-04", "")
+			b, err := json.MarshalIndent(campanhas, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
 
 			if campanhas.Data != nil {
 				t.Error("Test failed-1")
@@ -37,6 +49,12 @@ func TestCampanhas(t *testing.T) {
 	t.Run("Deveria retornar as formas de pagamento",
 		func(t *testing.T) {
 			var dto response.FormasPagamentoDTO = api.GetFormasPagamento("5940", "57.822.975/0001-12")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			if len(dto.Data) == 0 {
 				t.Error("Test failed-1")
 			}
@@ -51,6 +69,12 @@ func TestCampanhas(t *testing.T) {
 	t.Run("Falha ao retornar Formas de pagamento",
 		func(t *testing.T) {
 			var dto response.FormasPagamentoDTO = api.GetFormasPagamento("590", "57.822.975/0001-12")
+			b, err := json.MarshalIndent(dto, "", "  ")
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(string(b))
+
 			if len(dto.Data) > 0 {
 				t.Error("Test failed-1")
 			}

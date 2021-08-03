@@ -65,16 +65,16 @@ func Test_1PostCalcularCarrinhoParaCriacaoPedido(t *testing.T) {
 		fmt.Println(string(b))
 
 		if &dto.Data == nil {
-			t.Error("Test failed-1")
+			t.Error("Dto nulo")
 		}
 		if dto.Data.ValorFrete <= 0.0 {
-			t.Error("Test failed-2")
+			t.Error("Valor do frete igual a zero")
 		}
 		if dto.Data.ValorTotaldoPedido <= 0.0 {
-			t.Error("Test failed-3")
+			t.Error("Valor total do pedido igual a zero")
 		}
 		if dto.Data.Produtos[0].ValorTotalFrete <= 0.0 {
-			t.Error("Test failed-4")
+			t.Error("Valor total do frete igual a zero")
 		}
 		pedidoHelper = preparaPedido(dto)
 	})
@@ -100,16 +100,16 @@ func Test_2PostCalcularCarrinhoParaCriacaoPedidoComCartao(t *testing.T) {
 		fmt.Println(string(b))
 
 		if &dto.Data == nil {
-			t.Error("Test failed-1")
+			t.Error("Dto nulo")
 		}
 		if dto.Data.ValorFrete <= 0.0 {
-			t.Error("Test failed-2")
+			t.Error("Valor do frete igual a zero")
 		}
 		if dto.Data.ValorTotaldoPedido <= 0.0 {
-			t.Error("Test failed-3")
+			t.Error("Valor total do pedido igual a zero")
 		}
 		if dto.Data.Produtos[0].ValorTotalFrete <= 0.0 {
-			t.Error("Test failed-4")
+			t.Error("Valor total do frete igual a zero")
 		}
 		pedidoComCartaoHelper = preparaPedido(dto)
 	})
@@ -170,7 +170,7 @@ func Test_3PostCriarPedido(t *testing.T) {
 		if valorTotal != dto.Data.ValorTotalPedido {
 			fmt.Println("valorTotal: " + fmt.Sprintf("%f", valorTotal))
 			fmt.Println("dto.Data.ValorTotalPedido: " + fmt.Sprintf("%f", dto.Data.ValorTotalPedido))
-			t.Error("Test failed-1")
+			t.Error("Valor total do pedido diferenete do esperado")
 		}
 
 		pedidoHelper.IdPedido = dto.Data.CodigoPedido
@@ -263,7 +263,7 @@ func Test_4PostCriarPedidoPagCartao(t *testing.T) {
 		valorTotal := pedidoComCartaoHelper.ValorFrete + pedidoComCartaoHelper.precoVenda
 
 		if valorTotal != dto.Data.ValorTotalPedido {
-			t.Error("Test failed-1")
+			t.Error("Valor total do pedido diferenete do esperado")
 		}
 
 		pedidoComCartaoHelper.IdPedido = dto.Data.CodigoPedido
@@ -292,7 +292,7 @@ func Test_5PatchPedidosCancelamento(t *testing.T) {
 		fmt.Println(string(b))
 
 		if !dto.Data.PedidoCancelado {
-			t.Error("Test failed-1")
+			t.Error("O pedido não foi cancelado")
 		}
 	})
 
@@ -314,7 +314,7 @@ func Test_6PatchPedidosConfirmacao(t *testing.T) {
 		fmt.Println(string(b))
 
 		if !dto.Data.PedidoConfirmado {
-			t.Error("Test failed-1")
+			t.Error("O pedido não foi confirmado")
 		}
 	})
 
@@ -330,7 +330,7 @@ func Test_07GetDadosPedidoParceiro(t *testing.T) {
 		fmt.Println(string(b))
 
 		if !(pedidoHelper.IdPedido == dto.Data.Pedido.CodigoPedido) {
-			t.Error("Test failed-1")
+			t.Error("Validacao pelo id do pedido falhou")
 		}
 	})
 }
@@ -340,7 +340,7 @@ func Test_8GetNotaFiscalPedidoPdf(t *testing.T) {
 		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "XML")
 
 		if &resp.Body == nil {
-			t.Error("Test failed-1")
+			t.Error("Corpo da requisição vazio")
 		}
 	})
 }
@@ -350,7 +350,7 @@ func Test_9GetNotaFiscalPedidoXml(t *testing.T) {
 		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
 
 		if &resp.Body == nil {
-			t.Error("Test failed-1")
+			t.Error("Corpo da requisição vazio")
 		}
 	})
 }
@@ -365,7 +365,7 @@ func Test_10GetDadosPedidoParceiroFail(t *testing.T) {
 		fmt.Println(string(b))
 
 		if !("400" == dto.Error.Code) {
-			t.Error("Test failed-1")
+			t.Error("Status code diferente de 400")
 		}
 	})
 }
@@ -383,7 +383,7 @@ func Test_11PostCalcularCarrinhoParaCriacaoPedidoFail(t *testing.T) {
 		fmt.Println(string(b))
 
 		if !(&dto == nil) {
-			t.Error("Test failed-1")
+			t.Error("Dto diferente de nulo")
 		}
 	})
 }
@@ -402,7 +402,7 @@ func Test_12PatchPedidosFail(t *testing.T) {
 		fmt.Println(string(b))
 
 		if dto.Error.Code == "400" {
-			t.Error("Test failed-1")
+			t.Error("Status code diferente de 400")
 		}
 	})
 }
@@ -418,7 +418,7 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 		fmt.Println(string(b))
 
 		if dto.Error.Code == "400" {
-			t.Error("Test failed-1")
+			t.Error("Status code diferente de 400")
 		}
 	})
 }
@@ -426,9 +426,8 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 func Test_14GetNotaFiscalPedidoFail(t *testing.T) {
 	t.Run("Falhar na busca pela nota fiscal", func(t *testing.T) {
 		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
-
 		if &resp == nil {
-			t.Error("Test failed-1")
+			t.Error("Response vazio")
 		}
 	})
 }
@@ -442,9 +441,8 @@ func Test_15PostCriarPedidoFail(t *testing.T) {
 			fmt.Println(err)
 		}
 		fmt.Println(string(b))
-
 		if &dto == nil {
-			t.Error("Test failed-1")
+			t.Error("Response vazio")
 		}
 	})
 }
@@ -458,5 +456,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return rand.Int63n(85812)
+	return rand.Int63n(85891)
 }

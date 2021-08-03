@@ -1,6 +1,7 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
 	"math/rand"
 	"strconv"
@@ -57,6 +58,11 @@ func Test_1PostCalcularCarrinhoParaCriacaoPedido(t *testing.T) {
 		pedido.Cep = cep
 		pedido.Produtos = []request.ProdutoPedidoCarrinho{produto}
 		dto := api.PostCalcularCarrinho(pedido)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if &dto.Data == nil {
 			t.Error("Test failed-1")
@@ -87,6 +93,11 @@ func Test_2PostCalcularCarrinhoParaCriacaoPedidoComCartao(t *testing.T) {
 		pedido.Cep = cep
 		pedido.Produtos = []request.ProdutoPedidoCarrinho{produto}
 		dto := api.PostCalcularCarrinho(pedido)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if &dto.Data == nil {
 			t.Error("Test failed-1")
@@ -148,6 +159,12 @@ func Test_3PostCriarPedido(t *testing.T) {
 		request_dto.OptantePeloSimples = true
 
 		dto := api.PostCriarPedido(request_dto)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
+
 		valorTotal := pedidoHelper.ValorFrete + pedidoHelper.precoVenda
 
 		if valorTotal != dto.Data.ValorTotalPedido {
@@ -237,6 +254,12 @@ func Test_4PostCriarPedidoPagCartao(t *testing.T) {
 		request_dto.ValorTotalComplementarCOMJuros = 30.0
 
 		dto := api.PostCriarPedido(request_dto)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
+
 		valorTotal := pedidoComCartaoHelper.ValorFrete + pedidoComCartaoHelper.precoVenda
 
 		if valorTotal != dto.Data.ValorTotalPedido {
@@ -262,6 +285,11 @@ func Test_5PatchPedidosCancelamento(t *testing.T) {
 		confirmacao.Parceiro = "BANCO INTER"
 		val := strconv.Itoa(int(pedidoHelper.IdPedido))
 		dto := api.PatchPedidosCancelamentoConfirmacao(val, confirmacao)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if !dto.Data.PedidoCancelado {
 			t.Error("Test failed-1")
@@ -279,6 +307,11 @@ func Test_6PatchPedidosConfirmacao(t *testing.T) {
 		confirmacao.Confirmado = true
 
 		dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if !dto.Data.PedidoConfirmado {
 			t.Error("Test failed-1")
@@ -290,6 +323,11 @@ func Test_6PatchPedidosConfirmacao(t *testing.T) {
 func Test_07GetDadosPedidoParceiro(t *testing.T) {
 	t.Run("Deveria buscar os dados do pedido parceiro", func(t *testing.T) {
 		dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, fmt.Sprint(IdCampanha), fmt.Sprint(pedidoHelper.IdPedidoParceiro), "")
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if !(pedidoHelper.IdPedido == dto.Data.Pedido.CodigoPedido) {
 			t.Error("Test failed-1")
@@ -320,6 +358,11 @@ func Test_9GetNotaFiscalPedidoXml(t *testing.T) {
 func Test_10GetDadosPedidoParceiroFail(t *testing.T) {
 	t.Run("Falhar na busca de dados do pedido parceiro", func(t *testing.T) {
 		dto := api.GetDadosPedidoParceiro(fmt.Sprint(pedidoHelper.IdPedido), cnpj, "", "", "")
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if !("400" == dto.Error.Code) {
 			t.Error("Test failed-1")
@@ -333,6 +376,11 @@ func Test_11PostCalcularCarrinhoParaCriacaoPedidoFail(t *testing.T) {
 		request_dto.Cnpj = cnpj
 
 		dto := api.PostCalcularCarrinho(request_dto)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if !(&dto == nil) {
 			t.Error("Test failed-1")
@@ -347,6 +395,11 @@ func Test_12PatchPedidosFail(t *testing.T) {
 		confirmacao.IDCampanha = IdCampanha
 
 		dto := api.PatchPedidosCancelamentoConfirmacao("123", confirmacao)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
 
 		if dto.Error.Code == "400" {
 			t.Error("Test failed-1")
@@ -358,6 +411,12 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 	t.Run("Falhar na confirmação do pedido 2", func(t *testing.T) {
 		confirmacao := request.ConfirmacaoReq{}
 		dto := api.PatchPedidosCancelamentoConfirmacao(fmt.Sprint(pedidoComCartaoHelper.IdPedido), confirmacao)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
+
 		if dto.Error.Code == "400" {
 			t.Error("Test failed-1")
 		}
@@ -367,6 +426,7 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 func Test_14GetNotaFiscalPedidoFail(t *testing.T) {
 	t.Run("Falhar na busca pela nota fiscal", func(t *testing.T) {
 		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+
 		if &resp == nil {
 			t.Error("Test failed-1")
 		}
@@ -377,6 +437,12 @@ func Test_15PostCriarPedidoFail(t *testing.T) {
 	t.Run("Falhar na criacao do pedido", func(t *testing.T) {
 		criacao := request.CriacaoPedidoReq{}
 		dto := api.PostCriarPedido(criacao)
+		b, err := json.MarshalIndent(dto, "", "  ")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(b))
+
 		if &dto == nil {
 			t.Error("Test failed-1")
 		}

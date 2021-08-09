@@ -347,7 +347,7 @@ func Test_8GetNotaFiscalPedidoPdf(t *testing.T) {
 
 func Test_9GetNotaFiscalPedidoXml(t *testing.T) {
 	t.Run("Deveria retornar a nota fiscal no formato de xml", func(t *testing.T) {
-		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "XML")
 
 		if &resp.Body == nil {
 			t.Error("Corpo da requisição vazio")

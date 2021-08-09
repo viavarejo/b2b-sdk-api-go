@@ -372,18 +372,23 @@ func Test_10GetDadosPedidoParceiroFail(t *testing.T) {
 
 func Test_11PostCalcularCarrinhoParaCriacaoPedidoFail(t *testing.T) {
 	t.Run("Falhar ao calcular o carrinho", func(t *testing.T) {
-		request_dto := request.PedidoCarrinho{}
-		request_dto.Cnpj = cnpj
+		produto := request.ProdutoPedidoCarrinho{}
+		pedido := request.PedidoCarrinho{}
 
-		dto := api.PostCalcularCarrinho(request_dto)
+		pedido.Produtos = []request.ProdutoPedidoCarrinho{produto}
+		dto := api.PostCalcularCarrinho(pedido)
 		b, err := json.MarshalIndent(dto, "", "  ")
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Println(string(b))
 
-		if !(&dto == nil) {
-			t.Error("Dto diferente de nulo")
+		if &dto.Data == nil {
+			t.Error("Dto nulo")
+		}
+
+		if !("400" == dto.Error.Code) {
+			t.Error("Status code diferente de 400")
 		}
 	})
 }
@@ -391,7 +396,6 @@ func Test_11PostCalcularCarrinhoParaCriacaoPedidoFail(t *testing.T) {
 func Test_12PatchPedidosFail(t *testing.T) {
 	t.Run("Falhar na confirmação do pedido", func(t *testing.T) {
 		confirmacao := request.ConfirmacaoReq{}
-
 		confirmacao.IDCampanha = IdCampanha
 
 		dto := api.PatchPedidosCancelamentoConfirmacao("123", confirmacao)
@@ -401,7 +405,7 @@ func Test_12PatchPedidosFail(t *testing.T) {
 		}
 		fmt.Println(string(b))
 
-		if dto.Error.Code == "400" {
+		if !("400" == dto.Error.Code) {
 			t.Error("Status code diferente de 400")
 		}
 	})
@@ -417,7 +421,7 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 		}
 		fmt.Println(string(b))
 
-		if dto.Error.Code == "400" {
+		if !("400" == dto.Error.Code) {
 			t.Error("Status code diferente de 400")
 		}
 	})
@@ -426,6 +430,7 @@ func Test_13PatchPedidosConfirmacaoFail(t *testing.T) {
 func Test_14GetNotaFiscalPedidoFail(t *testing.T) {
 	t.Run("Falhar na busca pela nota fiscal", func(t *testing.T) {
 		_, resp := api.GetNotaFiscalPedido("247473612", "91712686", "PDF")
+
 		if &resp == nil {
 			t.Error("Response vazio")
 		}
@@ -441,6 +446,7 @@ func Test_15PostCriarPedidoFail(t *testing.T) {
 			fmt.Println(err)
 		}
 		fmt.Println(string(b))
+
 		if &dto == nil {
 			t.Error("Response vazio")
 		}
@@ -456,5 +462,5 @@ func preparaPedido(calculo response.CalculoCarrinho) DadosPedidoHelper {
 }
 
 func geraIdPedidoParceiro() int64 {
-	return rand.Int63n(85891)
+	return rand.Int63n(85900)
 }

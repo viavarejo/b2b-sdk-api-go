@@ -64,9 +64,13 @@ func doRequest(jsonData []byte, path string, method string, query map[string]int
 
 func DownloadFile(path string) ([]byte, *http.Response) {
 	basePath := GetVariable("HOST_BANDEIRA")
+	mockPath := GetVariable("HOST_MOCK")
 	token := GetVariable("TOKEN_PARCEIRO")
 	// Get the data
 	httpurl := basePath + path
+	if len(mockPath) > 0 {
+		httpurl = mockPath + path
+	}
 	req, err := http.NewRequest("GET", httpurl, bytes.NewReader(nil))
 	if err != nil {
 		panic(err)
